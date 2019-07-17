@@ -2,14 +2,24 @@ package com.lnsf.book.model;
 
 public class Trade {
 	
+	public Trade(int id, int userid, String usertele, int rid, String status,
+			String address, int money) {
+		super();
+		this.id = id;
+		this.userid = userid;
+		this.usertele = usertele;
+		this.rid = rid;
+		this.status = status;
+		this.address = address;
+		this.money = money;
+	}
 	private int id;
 	private int userid;
 	private String usertele;
 	private int rid;
 	private String status;
 	private String address;
-	private int car;
-	private int sum;
+	private int money;
 	
 	public int getId() {
 		return id;
@@ -47,17 +57,17 @@ public class Trade {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public int getCar() {
-		return car;
+	public int getMoney() {
+		return money;
 	}
-	public void setCar(int car) {
-		this.car = car;
+	public void setMoney(int money) {
+		this.money = money;
 	}
-	public int getSum() {
-		return sum;
-	}
-	public void setSum(int sum) {
-		this.sum = sum;
+	@Override
+	public String toString() {
+		return "Trade [id=" + id + ", userid=" + userid + ", usertele="
+				+ usertele + ", rid=" + rid + ", status=" + status
+				+ ", address=" + address + ", money=" + money + "]";
 	}
 	
 }

@@ -2,6 +2,12 @@ package com.lnsf.book.model;
 
 public class Appraise {
 	
+	public Appraise(int uid, int rid, String about) {
+		super();
+		this.uid = uid;
+		this.rid = rid;
+		this.about = about;
+	}
 	private int uid;
 	private int rid;
 	private String about;
@@ -23,6 +29,11 @@ public class Appraise {
 	}
 	public void setAbout(String about) {
 		this.about = about;
+	}
+	@Override
+	public String toString() {
+		return "Appraise [uid=" + uid + ", rid=" + rid + ", about=" + about
+				+ "]";
 	}
 	
 	

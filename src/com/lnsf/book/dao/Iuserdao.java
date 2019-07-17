@@ -1,8 +1,16 @@
 package com.lnsf.book.dao;
 
+import java.util.List;
+
 import com.lnsf.book.model.User;
 
-public interface Iuserdao {
+public interface IUserdao {
 	
-	User select();
+	List<User> select();
+	
+	boolean insert(User user);
+	
+	boolean update(User user);
+	
+	boolean delete(User user);
 }

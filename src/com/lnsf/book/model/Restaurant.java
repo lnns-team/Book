@@ -2,6 +2,13 @@ package com.lnsf.book.model;
 
 public class Restaurant {
 
+	public Restaurant(int id, int userid, String name, String address) {
+		super();
+		this.id = id;
+		this.userid = userid;
+		this.name = name;
+		this.address = address;
+	}
 	private int id;
 	private int userid;
 	private String name;
@@ -30,5 +37,10 @@ public class Restaurant {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	@Override
+	public String toString() {
+		return "Restaurant [id=" + id + ", userid=" + userid + ", name=" + name
+				+ ", address=" + address + "]";
 	}
 }

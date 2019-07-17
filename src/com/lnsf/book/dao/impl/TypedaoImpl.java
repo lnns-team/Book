@@ -7,27 +7,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lnsf.book.dao.IUserdao;
-import com.lnsf.book.model.User;
+import com.lnsf.book.dao.ITypedao;
+import com.lnsf.book.model.Type;
 import com.lnsf.book.util.DataAccess;
 
-public class UserdaoImpl implements IUserdao {
+public class TypedaoImpl implements ITypedao {
 
 	@Override
-	public List<User> select() {
+	public List<Type> select() {
 		Connection conn = null;
 		PreparedStatement prep = null;
-		ResultSet rs = null;
-		List<User> list = new ArrayList<User>();
+		ResultSet rs=null;
+		List<Type> list = new ArrayList<Type>();
 		try {
 			conn = DataAccess.getConnection();
-			prep = conn.prepareStatement("select * from user");
+			prep = conn.prepareStatement("select * from type");
 			rs = prep.executeQuery();
-			while (rs.next()) {
-				User user = new User(rs.getInt("id"), rs.getString("name"),
-						rs.getInt("identify"), rs.getString("username"),
-						rs.getString("password"));
-				list.add(user);
+			while(rs.next())
+			{
+				Type type = new Type(rs.getInt("id"), rs.getString("name"));
+				list.add(type);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -37,19 +36,19 @@ public class UserdaoImpl implements IUserdao {
 	}
 
 	@Override
-	public boolean insert(User user) {
+	public boolean insert(Type type) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean update(User user) {
+	public boolean update(Type type) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean delete(User user) {
+	public boolean delete(Type type) {
 		// TODO Auto-generated method stub
 		return false;
 	}

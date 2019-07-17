@@ -7,27 +7,29 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lnsf.book.dao.IUserdao;
+import com.lnsf.book.dao.ITradedao;
+import com.lnsf.book.model.Trade;
 import com.lnsf.book.model.User;
 import com.lnsf.book.util.DataAccess;
 
-public class UserdaoImpl implements IUserdao {
+public class Tradedaoimpl implements ITradedao{
 
 	@Override
-	public List<User> select() {
+	public List<Trade> select() {
 		Connection conn = null;
 		PreparedStatement prep = null;
-		ResultSet rs = null;
-		List<User> list = new ArrayList<User>();
+		ResultSet rs=null;
+		List<Trade> list = new ArrayList<Trade>();
 		try {
 			conn = DataAccess.getConnection();
-			prep = conn.prepareStatement("select * from user");
+			prep = conn.prepareStatement("select * from Trade");
 			rs = prep.executeQuery();
-			while (rs.next()) {
-				User user = new User(rs.getInt("id"), rs.getString("name"),
-						rs.getInt("identify"), rs.getString("username"),
-						rs.getString("password"));
-				list.add(user);
+			while(rs.next())
+			{
+				Trade trade = new Trade(rs.getInt("id"), rs.getInt("userid"),
+						rs.getString("usertele"), rs.getInt("rid"), rs.getString("status"),
+						rs.getString("address"), rs.getInt("money"));
+				list.add(trade);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -37,19 +39,19 @@ public class UserdaoImpl implements IUserdao {
 	}
 
 	@Override
-	public boolean insert(User user) {
+	public boolean insert(Trade trade) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean update(User user) {
+	public boolean update(Trade trade) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean delete(User user) {
+	public boolean delete(Trade trade) {
 		// TODO Auto-generated method stub
 		return false;
 	}

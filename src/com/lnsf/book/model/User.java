@@ -2,6 +2,15 @@ package com.lnsf.book.model;
 
 public class User {
 	
+	public User(int id, String name, int identify, String username,
+			String password) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.identify = identify;
+		this.username = username;
+		this.password = password;
+	}
 	private int id;
 	private String name;
 	private int identify;
@@ -37,5 +46,10 @@ public class User {
 	}
 	public void setIdentify(int identify) {
 		this.identify = identify;
+	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", identify=" + identify
+				+ ", username=" + username + ", password=" + password + "]";
 	}
 }

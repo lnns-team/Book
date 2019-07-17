@@ -7,27 +7,29 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lnsf.book.dao.IUserdao;
+import com.lnsf.book.dao.IMenudao;
+import com.lnsf.book.model.Menu;
 import com.lnsf.book.model.User;
 import com.lnsf.book.util.DataAccess;
 
-public class UserdaoImpl implements IUserdao {
+public class MenudaoImpl implements IMenudao{
 
 	@Override
-	public List<User> select() {
+	public List<Menu> select() {
 		Connection conn = null;
 		PreparedStatement prep = null;
-		ResultSet rs = null;
-		List<User> list = new ArrayList<User>();
+		ResultSet rs=null;
+		List<Menu> list = new ArrayList<Menu>();
 		try {
 			conn = DataAccess.getConnection();
-			prep = conn.prepareStatement("select * from user");
+			prep = conn.prepareStatement("select * from menu");
 			rs = prep.executeQuery();
-			while (rs.next()) {
-				User user = new User(rs.getInt("id"), rs.getString("name"),
-						rs.getInt("identify"), rs.getString("username"),
-						rs.getString("password"));
-				list.add(user);
+			while(rs.next())
+			{
+				Menu menu = new Menu(rs.getInt("id"), rs.getString("name"), 
+						rs.getInt("price"), rs.getInt("rid") ,rs.getString("mdescribe"),
+						rs.getInt("type"));
+				list.add(menu);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -37,19 +39,19 @@ public class UserdaoImpl implements IUserdao {
 	}
 
 	@Override
-	public boolean insert(User user) {
+	public boolean insert(Menu menu) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean update(User user) {
+	public boolean update(Menu menu) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public boolean delete(User user) {
+	public boolean delete(Menu menu) {
 		// TODO Auto-generated method stub
 		return false;
 	}

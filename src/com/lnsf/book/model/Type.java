@@ -2,6 +2,11 @@ package com.lnsf.book.model;
 
 public class Type {
 
+	public Type(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
 	private int id;
 	private String name;
 	
@@ -16,6 +21,10 @@ public class Type {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	@Override
+	public String toString() {
+		return "Type [id=" + id + ", name=" + name + "]";
 	}
 	
 }
