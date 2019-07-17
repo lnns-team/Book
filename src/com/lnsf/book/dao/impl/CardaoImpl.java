@@ -60,14 +60,42 @@ public class CardaoImpl implements ICardao{
 
 	@Override
 	public boolean update(Car car) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean flag = false;
+		Connection conn = null;
+		PreparedStatement prep = null;
+		try {
+			conn = DButil.getConnection();
+			prep = conn.prepareStatement("update Car set menuid = ?, num = ?, "
+					+ "tid = ? where id = ?");
+			prep.setInt(1, car.getMenuid());
+			prep.setInt(2, car.getNum());
+			prep.setInt(3, car.getTid());
+			prep.setInt(4, car.getId());
+			prep.executeUpdate();
+			flag = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 	@Override
 	public boolean delete(Car car) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean flag = false;
+		Connection conn = null;
+		PreparedStatement prep = null;
+		try {
+			conn = DButil.getConnection();
+			prep = conn.prepareStatement("delete from Car where id = ?");
+			prep.setInt(1, car.getId());
+			prep.executeUpdate();
+			flag = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 }
