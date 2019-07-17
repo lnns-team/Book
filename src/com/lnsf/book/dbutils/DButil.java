@@ -1,11 +1,11 @@
-package com.lnsf.book.util;
+package com.lnsf.book.dbutils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-public class DataAccess {
+public class DButil {
 	private static String driver = null;
 	private static String url = null;
 	private static String user = null;
@@ -31,13 +31,13 @@ public class DataAccess {
 		
 		catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Êý¾Ý¿âÁ¬½ÓÒì³££¬Çë¼ì²éjar°üÊÇ·ñÒýÈë£¡");
+			System.out.println("ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½jarï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ë£¡");
 			e.printStackTrace();
 		} 
 		
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("Êý¾Ý¿âÁ¬½ÓÒì³££¬Çë¼ì²éÁ¬½Ó²ÎÊýÊÇ·ñÕýÈ·");
+			System.out.println("ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ì³£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó²ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ï¿½ï¿½È·");
 			e.printStackTrace();
 		}
 		return conn;

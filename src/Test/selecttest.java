@@ -30,6 +30,6 @@ public class selecttest {
 		//System.out.println(tradedao.select());
 		
 		CardaoImpl cardao = new CardaoImpl();
-		//System.out.println(cardao.select());
+		System.out.println(cardao.select());
 	}
 }

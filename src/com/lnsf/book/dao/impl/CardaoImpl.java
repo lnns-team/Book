@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lnsf.book.dao.ICardao;
+import com.lnsf.book.dbutils.DButil;
 import com.lnsf.book.model.Car;
 import com.lnsf.book.model.User;
-import com.lnsf.book.util.DataAccess;
 
 public class CardaoImpl implements ICardao{
 
@@ -21,7 +21,7 @@ public class CardaoImpl implements ICardao{
 		ResultSet rs=null;
 		List<Car> list = new ArrayList<Car>();
 		try {
-			conn = DataAccess.getConnection();
+			conn = DButil.getConnection();
 			prep = conn.prepareStatement("select * from Car");
 			rs = prep.executeQuery();
 			while(rs.next())
@@ -39,8 +39,23 @@ public class CardaoImpl implements ICardao{
 
 	@Override
 	public boolean insert(Car car) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean flag = false;
+		Connection conn = null;
+		PreparedStatement prep = null;
+		try {
+			conn = DButil.getConnection();
+			prep = conn.prepareStatement("insert into Car values(?, ?, ?, ?)");
+			prep.setInt(1, car.getId());
+			prep.setInt(2, car.getMenuid());
+			prep.setInt(3, car.getNum());
+			prep.setInt(4, car.getTid());
+			prep.executeUpdate();
+			flag = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 	@Override

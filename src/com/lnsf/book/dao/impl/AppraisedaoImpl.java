@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lnsf.book.dao.IAppraisedao;
+import com.lnsf.book.dbutils.DButil;
 import com.lnsf.book.model.Appraise;
 import com.lnsf.book.model.User;
-import com.lnsf.book.util.DataAccess;
 
 public class AppraisedaoImpl implements IAppraisedao{
 
@@ -21,7 +21,7 @@ public class AppraisedaoImpl implements IAppraisedao{
 		ResultSet rs=null;
 		List<Appraise> list = new ArrayList<Appraise>();
 		try {
-			conn = DataAccess.getConnection();
+			conn = DButil.getConnection();
 			prep = conn.prepareStatement("select * from Appraise");
 			rs = prep.executeQuery();
 			while(rs.next())
@@ -38,8 +38,22 @@ public class AppraisedaoImpl implements IAppraisedao{
 
 	@Override
 	public boolean insert(Appraise appraise) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean flag = false;
+		Connection conn = null;
+		PreparedStatement prep = null;
+		try {
+			conn = DButil.getConnection();
+			prep = conn.prepareStatement("insert into Appraise values(?, ?, ?)");
+			prep.setInt(1, appraise.getUid());
+			prep.setInt(2, appraise.getRid());
+			prep.setString(3, appraise.getAbout());
+			prep.executeUpdate();
+			flag = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package com.lnsf.book.util;
+package com.lnsf.book.dbutils;
 
 import java.io.File;
 import java.io.IOException;

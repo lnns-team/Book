@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lnsf.book.dao.ITradedao;
+import com.lnsf.book.dbutils.DButil;
 import com.lnsf.book.model.Trade;
 import com.lnsf.book.model.User;
-import com.lnsf.book.util.DataAccess;
 
 public class Tradedaoimpl implements ITradedao{
 
@@ -21,7 +21,7 @@ public class Tradedaoimpl implements ITradedao{
 		ResultSet rs=null;
 		List<Trade> list = new ArrayList<Trade>();
 		try {
-			conn = DataAccess.getConnection();
+			conn = DButil.getConnection();
 			prep = conn.prepareStatement("select * from Trade");
 			rs = prep.executeQuery();
 			while(rs.next())
@@ -40,8 +40,26 @@ public class Tradedaoimpl implements ITradedao{
 
 	@Override
 	public boolean insert(Trade trade) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean flag = false;
+		Connection conn = null;
+		PreparedStatement prep = null;
+		try {
+			conn = DButil.getConnection();
+			prep = conn.prepareStatement("insert into Trade values(?, ?, ?, ?, ?, ?, ?)");
+			prep.setInt(1, trade.getId());
+			prep.setInt(2, trade.getUserid());
+			prep.setString(3, trade.getUsertele());
+			prep.setInt(4, trade.getRid());
+			prep.setString(5, trade.getStatus());
+			prep.setString(6, trade.getAddress());
+			prep.setInt(7, trade.getMoney());
+			prep.executeUpdate();
+			flag = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 	@Override

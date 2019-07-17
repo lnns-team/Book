@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lnsf.book.dao.IUserdao;
+import com.lnsf.book.dbutils.DButil;
 import com.lnsf.book.model.User;
-import com.lnsf.book.util.DataAccess;
 
 public class UserdaoImpl implements IUserdao {
 
@@ -20,7 +20,7 @@ public class UserdaoImpl implements IUserdao {
 		ResultSet rs = null;
 		List<User> list = new ArrayList<User>();
 		try {
-			conn = DataAccess.getConnection();
+			conn = DButil.getConnection();
 			prep = conn.prepareStatement("select * from user");
 			rs = prep.executeQuery();
 			while (rs.next()) {
@@ -38,8 +38,24 @@ public class UserdaoImpl implements IUserdao {
 
 	@Override
 	public boolean insert(User user) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean flag = false;
+		Connection conn = null;
+		PreparedStatement prep = null;
+		try {
+			conn = DButil.getConnection();
+			prep = conn.prepareStatement("insert into User values(?, ?, ?, ?, ?)");
+			prep.setInt(1, user.getId());
+			prep.setString(2, user.getName());
+			prep.setInt(3, user.getIdentify());
+			prep.setString(4, user.getUsername());
+			prep.setString(5, user.getPassword());
+			prep.executeUpdate();
+			flag = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 	@Override

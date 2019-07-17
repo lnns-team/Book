@@ -8,9 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lnsf.book.dao.IMenudao;
+import com.lnsf.book.dbutils.DButil;
 import com.lnsf.book.model.Menu;
 import com.lnsf.book.model.User;
-import com.lnsf.book.util.DataAccess;
 
 public class MenudaoImpl implements IMenudao{
 
@@ -21,7 +21,7 @@ public class MenudaoImpl implements IMenudao{
 		ResultSet rs=null;
 		List<Menu> list = new ArrayList<Menu>();
 		try {
-			conn = DataAccess.getConnection();
+			conn = DButil.getConnection();
 			prep = conn.prepareStatement("select * from menu");
 			rs = prep.executeQuery();
 			while(rs.next())
@@ -40,8 +40,25 @@ public class MenudaoImpl implements IMenudao{
 
 	@Override
 	public boolean insert(Menu menu) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean flag = false;
+		Connection conn = null;
+		PreparedStatement prep = null;
+		try {
+			conn = DButil.getConnection();
+			prep = conn.prepareStatement("insert into Menu values(?, ?, ?, ?, ?, ?)");
+			prep.setInt(1, menu.getId());
+			prep.setString(2, menu.getName());
+			prep.setInt(3, menu.getPrice());
+			prep.setInt(4, menu.getRid());
+			prep.setString(5, menu.getMDescribe());
+			prep.setInt(6, menu.getType());
+			prep.executeUpdate();
+			flag = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 	@Override

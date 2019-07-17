@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lnsf.book.dao.ITypedao;
+import com.lnsf.book.dbutils.DButil;
 import com.lnsf.book.model.Type;
-import com.lnsf.book.util.DataAccess;
 
 public class TypedaoImpl implements ITypedao {
 
@@ -20,7 +20,7 @@ public class TypedaoImpl implements ITypedao {
 		ResultSet rs=null;
 		List<Type> list = new ArrayList<Type>();
 		try {
-			conn = DataAccess.getConnection();
+			conn = DButil.getConnection();
 			prep = conn.prepareStatement("select * from type");
 			rs = prep.executeQuery();
 			while(rs.next())
@@ -37,8 +37,21 @@ public class TypedaoImpl implements ITypedao {
 
 	@Override
 	public boolean insert(Type type) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean flag = false;
+		Connection conn = null;
+		PreparedStatement prep = null;
+		try {
+			conn = DButil.getConnection();
+			prep = conn.prepareStatement("insert into Type values(?, ?)");
+			prep.setInt(1, type.getId());
+			prep.setString(2, type.getName());
+			prep.executeUpdate();
+			flag = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 	@Override

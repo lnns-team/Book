@@ -1,4 +1,4 @@
-package com.lnsf.book.util;
+package com.lnsf.book.dbutils;
 
 import java.io.File;
 import java.io.IOException;
@@ -35,7 +35,7 @@ public class XMLValidator {
 			e.printStackTrace();
 		}
 		catch (IOException e) {
-			System.out.println("XMLÑéÖ¤Ê§°Ü......");
+			System.out.println("XMLï¿½ï¿½Ö¤Ê§ï¿½ï¿½......");
 			e.printStackTrace();
 		}
 		return flag;
