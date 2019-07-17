@@ -58,14 +58,42 @@ public class AppraisedaoImpl implements IAppraisedao{
 
 	@Override
 	public boolean update(Appraise appraise) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean flag = false;
+		Connection conn = null;
+		PreparedStatement prep = null;
+		try {
+			conn = DButil.getConnection();
+			prep = conn.prepareStatement("update Appraise set about = ? where uid = ? "
+					+ "and rid = ?");
+			prep.setString(1, appraise.getAbout());
+			prep.setInt(2, appraise.getUid());
+			prep.setInt(3, appraise.getRid());
+			prep.executeUpdate();
+			flag = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 	@Override
 	public boolean delete(Appraise appraise) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean flag = false;
+		Connection conn = null;
+		PreparedStatement prep = null;
+		try {
+			conn = DButil.getConnection();
+			prep = conn.prepareStatement("delete from Appraise where uid = ? and rid = ?");
+			prep.setInt(1, appraise.getUid());
+			prep.setInt(2, appraise.getRid());
+			prep.executeUpdate();
+			flag = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 }

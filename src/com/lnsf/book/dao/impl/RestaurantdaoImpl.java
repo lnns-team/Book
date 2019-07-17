@@ -60,14 +60,42 @@ public class RestaurantdaoImpl implements IRestaurantdao{
 
 	@Override
 	public boolean update(Restaurant restaurant) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean flag = false;
+		Connection conn = null;
+		PreparedStatement prep = null;
+		try {
+			conn = DButil.getConnection();
+			prep = conn.prepareStatement("update Restaurant set userid = ? , name = ? ,"
+					+ "address = ? where id = ?");
+			prep.setInt(1, restaurant.getUserid());
+			prep.setString(2, restaurant.getName());
+			prep.setString(3, restaurant.getAddress());
+			prep.setInt(4, restaurant.getId());
+			prep.executeUpdate();
+			flag = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 	@Override
 	public boolean delete(Restaurant restaurant) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean flag = false;
+		Connection conn = null;
+		PreparedStatement prep = null;
+		try {
+			conn = DButil.getConnection();
+			prep = conn.prepareStatement("delete from Restaurant where id = ?");
+			prep.setInt(1, restaurant.getId());
+			prep.executeUpdate();
+			flag = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 }

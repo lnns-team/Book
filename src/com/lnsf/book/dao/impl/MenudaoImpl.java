@@ -63,14 +63,43 @@ public class MenudaoImpl implements IMenudao{
 
 	@Override
 	public boolean update(Menu menu) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean flag = false;
+		Connection conn = null;
+		PreparedStatement prep = null;
+		try {
+			conn = DButil.getConnection();
+			prep = conn.prepareStatement("update Menu set name = ?, price = ?, mdescribe = ?, "
+					+ "type = ? where id = ?");
+			prep.setString(1, menu.getName());
+			prep.setInt(2, menu.getPrice());
+			prep.setString(3, menu.getMDescribe());
+			prep.setInt(4, menu.getType());
+			prep.setInt(5, menu.getId());
+			prep.executeUpdate();
+			flag = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 	@Override
 	public boolean delete(Menu menu) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean flag = false;
+		Connection conn = null;
+		PreparedStatement prep = null;
+		try {
+			conn = DButil.getConnection();
+			prep = conn.prepareStatement("delete from Menu where id = ?");
+			prep.setInt(1, menu.getId());
+			prep.executeUpdate();
+			flag = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 }

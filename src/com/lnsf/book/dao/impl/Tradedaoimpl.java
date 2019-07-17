@@ -64,14 +64,43 @@ public class Tradedaoimpl implements ITradedao{
 
 	@Override
 	public boolean update(Trade trade) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean flag = false;
+		Connection conn = null;
+		PreparedStatement prep = null;
+		try {
+			conn = DButil.getConnection();
+			prep = conn.prepareStatement("update Trade set usertele = ?,"
+					+ " status = ?, address = ?, money = ? where id = ?");
+			prep.setString(1, trade.getUsertele());
+			prep.setString(2, trade.getStatus());
+			prep.setString(3, trade.getAddress());
+			prep.setInt(4, trade.getMoney());
+			prep.setInt(5, trade.getId());
+			prep.executeUpdate();
+			flag = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 	@Override
 	public boolean delete(Trade trade) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean flag = false;
+		Connection conn = null;
+		PreparedStatement prep = null;
+		try {
+			conn = DButil.getConnection();
+			prep = conn.prepareStatement("delete from Trade where id = ?");
+			prep.setInt(1, trade.getId());
+			prep.executeUpdate();
+			flag = true;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return flag;
 	}
 
 }
