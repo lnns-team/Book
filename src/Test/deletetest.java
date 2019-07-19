@@ -1,3 +1,4 @@
+
 package Test;
 
 import com.lnsf.book.dao.impl.AppraisedaoImpl;
@@ -40,4 +41,3 @@ public class deletetest {
 		cardao.delete(new Car(5, 5, 5, 4));
 	}
 }
-

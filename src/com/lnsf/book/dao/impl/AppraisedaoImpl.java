@@ -1,3 +1,4 @@
+
 package com.lnsf.book.dao.impl;
 
 import java.sql.Connection;
@@ -10,7 +11,6 @@ import java.util.List;
 import com.lnsf.book.dao.IAppraisedao;
 import com.lnsf.book.dbutils.DButil;
 import com.lnsf.book.model.Appraise;
-import com.lnsf.book.model.User;
 
 public class AppraisedaoImpl implements IAppraisedao{
 
