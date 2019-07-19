@@ -12,38 +12,41 @@ public class UserView {
      * 登录页面
      */
     public static void login(){
-        System.out.println("登录页面");
         System.out.println("请输入用户名:");
         String username = Input.getString();
         System.out.println("请输入密码:");
         String password = Input.getString();
-        UserController.login(username, password);
+        switch (UserController.login(username, password)){
+        case 0:
+            Main.loginFail();
+            return;
+        case 1:
+            FgMain.userMainView();
+            break;
+        case 2:
+            BgMain.businessMainView();
+            break;
+        }
     }
     /**
      * 注册页面
      */
     public static void register(){
         System.out.println("请输入需要注册的用户类型(1.普通用户 2.商家用户):");
-        if (!UserController.modifyUserIdentify(Input.getInt()))
-            return;
+        UserController.USER.setIdentify(Input.getInt("[1-2]"));
         System.out.println("请输入姓名");
-        while (!UserController.updateUserName(Input.getString())){
-            Main.again();
-        }
+        UserController.USER.setName(Input.getString(20));
         System.out.println("请输入用户名:");
-        while (!UserController.updateUserUsername(Input.getString())){
-            Main.again();
-        }
+        UserController.USER.setUsername(Input.getString(20));
         System.out.println("请输入密码:");
-        while (!UserController.updateUserPassword(Input.getString())){
-            Main.again();
-        }
-//        if (!User服务.插入用户是否成功(UserController.USER)){
+        UserController.USER.setPassword(Input.getString(20));
+        if (UserController.registerUser(UserController.USER)){
           Main.success();
-//          UserController.login(UserController.USER.getId(), UserController.USER.getPassword());
-//        } else {
+          FgMain.userMainView();
+        } else {
           Main.fail();
-//        }
+          System.err.println("注册失败,可能是用户名重复,请重新输入用户名");
+        }
     }
     /**
      * 用户登录成功页面
@@ -101,6 +104,97 @@ public class UserView {
     }
     public static void userNameExist() {
         System.err.println("用户名已存在");
+    }
+    /**
+     * 输出用户用户名,姓名,用户类型,密码
+     */
+    public static void showUserInfo() {
+        showUserUsername();
+        showUserName();
+        showUserIdentify();
+        showUserPassword();
+    }
+    /**
+     * 更新用户信息页面
+     */
+    public static void updateUserInfo() {
+        System.out.println("***************************");
+        System.out.println("1.更改用户名");
+        System.out.println("2.更改姓名");
+        System.out.println("3.更改密码");
+        System.out.println("0.返回上一层");
+        System.out.println("***************************");
+        switch (Input.getInt("[0-3]")){
+        case 0:
+            break;
+        case 1:
+            updateUsername();
+            break;
+        case 2:
+            updateName();
+            break;
+        case 3:
+            updatePassword();
+            break;
+        }
+    }
+    /**
+     * 更新密码
+     */
+    private static void updatePassword() {
+        switch (UserController.updateUserPassword(Input.getString())){
+        case 0:
+            Main.fail();
+            System.out.println("输入为空");
+            break;
+        case 1:
+            Main.success();
+            System.out.println("密码修改成功");
+            break;
+        case 2:
+            Main.fail();
+            System.out.println("密码修改失败");
+            break;
+        }
+    }
+    /**
+     * 更新用户名
+     */
+    public static void updateUsername() {
+        switch (UserController.updateUserUsername(Input.getString())){
+        case 0:
+            Main.fail();
+            System.out.println("输入为空");
+            break;
+        case 1:
+            Main.success();
+            System.out.println("用户名修改成功");
+            break;
+        case 2:
+            Main.fail();
+            System.out.println("用户名重复");
+            break;
+        }
+    }
+    /**
+     * 更新姓名
+     */
+    private static void updateName() {
+        switch (UserController.updateUserName(Input.getString())){
+        case 0:
+            Main.fail();
+            System.out.println("输入为空");
+            break;
+        case 1:
+            Main.success();
+            System.out.println("姓名修改成功");
+            break;
+        case 2:
+            Main.fail();
+            System.out.println("姓名修改失败");
+            break;
+        }
+        
     }
     
     

@@ -14,16 +14,15 @@ public class Main {
      * 主界面 
      */
     public static void mianView() {
-        System.out.println("***************************");
-        System.out.println("*******欢迎使用开饭啦********");
-        System.out.println("***************************");
-        System.out.println("\t 1.登录");
-        System.out.println("\t 2.注册");
-        System.out.println("***************************");
-        System.out.println("请输入选项,或者按0退出.");
         do {
-            int choice = Input.getInt();
-            switch (choice) {
+            System.out.println("***************************");
+            System.out.println("*******欢迎使用开饭啦********");
+            System.out.println("***************************");
+            System.out.println("\t 1.登录");
+            System.out.println("\t 2.注册");
+            System.out.println("***************************");
+            System.out.println("请输入选项,或者按0退出.");
+            switch (Input.getInt("[0-2]")) {
             case 0:
                 System.out.println("------------------");
                 System.out.println("您已经退出系统!");
@@ -31,18 +30,17 @@ public class Main {
                 System.exit(1);
                 break;
             case 1:
-                UserController.login();
+                UserView.login();
                 break;
             case 2:
-                UserController.register();
-                break;
-            default:
-                fail();
-                again();
+                UserView.register();
                 break;
             }
         } while (true);
 
+    }
+    public static void loginFail(){
+        System.out.println("登录失败");
     }
     /**
      * 操作失败输出
