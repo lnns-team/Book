@@ -37,6 +37,23 @@ public class IUserdaoServiceImpl implements IUserdaoService{
 		boolean flag = userdao.delete(user);
 		return flag;
 	}
-
 	
+	/**
+	 * 根据username判断username是否存在,存在返回false;
+	 */
+	@Override
+	public boolean selectByUsername(String username) {
+		boolean flag = false;
+		UserdaoImpl userdao = new UserdaoImpl();
+		List<User> list = new ArrayList<User>();
+		list = userdao.select();
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list.get(i).getUsername().equalsIgnoreCase(username))
+			{
+				flag = true;
+			}
+		}
+		return flag;
+	}
 }

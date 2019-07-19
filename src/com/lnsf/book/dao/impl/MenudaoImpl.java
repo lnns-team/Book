@@ -46,13 +46,12 @@ public class MenudaoImpl implements IMenudao{
 		PreparedStatement prep = null;
 		try {
 			conn = DButil.getConnection();
-			prep = conn.prepareStatement("insert into Menu values(?, ?, ?, ?, ?, ?)");
-			prep.setInt(1, menu.getId());
-			prep.setString(2, menu.getName());
-			prep.setInt(3, menu.getPrice());
-			prep.setInt(4, menu.getRid());
-			prep.setString(5, menu.getMDescribe());
-			prep.setInt(6, menu.getType());
+			prep = conn.prepareStatement("insert into Menu values(null, ?, ?, ?, ?, ?)");
+			prep.setString(1, menu.getName());
+			prep.setInt(2, menu.getPrice());
+			prep.setInt(3, menu.getRid());
+			prep.setString(4, menu.getMDescribe());
+			prep.setInt(5, menu.getType());
 			prep.executeUpdate();
 			flag = true;
 		} catch (SQLException e) {

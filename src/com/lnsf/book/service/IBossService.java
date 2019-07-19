@@ -15,11 +15,11 @@ public interface IBossService {		//店主服务
 	
 	List<Appraise> selectAppraise();	//查看评价信息
 	
-	boolean insertMenu(Menu menu);				//插入新的菜式
+	boolean insertMenu(Menu menu);		//插入新的菜式
 	
-	boolean updateMenu(Menu menu);				//修改现有菜式信息
+	boolean updateMenu(Menu menu);		//修改现有菜式信息
 	
-	boolean deleteMenu(Menu menu);				//删除现有菜式
+	boolean deleteMenu(Menu menu);		//删除现有菜式
 	
 	User selectUser();					//查看个人信息
 

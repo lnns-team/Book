@@ -45,11 +45,10 @@ public class RestaurantdaoImpl implements IRestaurantdao{
 		PreparedStatement prep = null;
 		try {
 			conn = DButil.getConnection();
-			prep = conn.prepareStatement("insert into Restaurant values(?, ?, ?, ?)");
-			prep.setInt(1, restaurant.getId());
-			prep.setInt(2, restaurant.getUserid());
-			prep.setString(3, restaurant.getName());
-			prep.setString(4, restaurant.getAddress());
+			prep = conn.prepareStatement("insert into Restaurant values(null, ?, ?, ?)");
+			prep.setInt(1, restaurant.getUserid());
+			prep.setString(2, restaurant.getName());
+			prep.setString(3, restaurant.getAddress());
 			prep.executeUpdate();
 			flag = true;
 		} catch (SQLException e) {
