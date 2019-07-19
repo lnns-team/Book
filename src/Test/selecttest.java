@@ -12,7 +12,7 @@ public class selecttest {
 	
 	public static void main(String[] args) {
 		UserdaoImpl userdao = new UserdaoImpl();
-		System.out.println(userdao.select());
+		//System.out.println(userdao.select());
 		
 		TypedaoImpl typedao = new TypedaoImpl();
 		//System.out.println(typedao.select());
@@ -21,7 +21,7 @@ public class selecttest {
 		//System.out.println(restaurantdao.select());
 		
 		AppraisedaoImpl appraisedao = new AppraisedaoImpl();
-		//System.out.println(appraisedao.select());
+		System.out.println(appraisedao.select());
 		
 		MenudaoImpl menudao = new MenudaoImpl();
 		//System.out.println(menudao.select());
@@ -30,6 +30,6 @@ public class selecttest {
 		//System.out.println(tradedao.select());
 		
 		CardaoImpl cardao = new CardaoImpl();
-		System.out.println(cardao.select());
+		//System.out.println(cardao.select());
 	}
 }
