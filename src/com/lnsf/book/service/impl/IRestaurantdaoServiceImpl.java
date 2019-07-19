@@ -1,4 +1,4 @@
-package com.lnsf.cookbook.service.impl;
+package com.lnsf.book.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
