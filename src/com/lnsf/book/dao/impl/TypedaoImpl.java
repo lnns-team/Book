@@ -26,7 +26,7 @@ public class TypedaoImpl implements ITypedao {
 			rs = prep.executeQuery();
 			while(rs.next())
 			{
-				Type type = new Type(rs.getInt("id"), rs.getString("name"));
+				Type type = new Type(rs.getInt("id"), rs.getString("name"),rs.getInt(3));
 				list.add(type);
 			}
 		} catch (SQLException e) {
@@ -43,9 +43,8 @@ public class TypedaoImpl implements ITypedao {
 		PreparedStatement prep = null;
 		try {
 			conn = DButil.getConnection();
-			prep = conn.prepareStatement("insert into Type values(?, ?)");
-			prep.setInt(1, type.getId());
-			prep.setString(2, type.getName());
+			prep = conn.prepareStatement("insert into Type values(null, ?)");
+			prep.setString(1, type.getName());
 			prep.executeUpdate();
 			flag = true;
 		} catch (SQLException e) {

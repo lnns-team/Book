@@ -46,12 +46,11 @@ public class UserdaoImpl implements IUserdao {
 		PreparedStatement prep = null;
 		try {
 			conn = DButil.getConnection();
-			prep = conn.prepareStatement("insert into User values(?, ?, ?, ?, ?)");
-			prep.setInt(1, user.getId());
-			prep.setString(2, user.getName());
-			prep.setInt(3, user.getIdentify());
-			prep.setString(4, user.getUsername());
-			prep.setString(5, user.getPassword());
+			prep = conn.prepareStatement("insert into User values(null, ?, ?, ?, ?)");
+			prep.setString(1, user.getName());
+			prep.setInt(2, user.getIdentify());
+			prep.setString(3, user.getUsername());
+			prep.setString(4, user.getPassword());
 			prep.executeUpdate();
 			flag = true;
 		} catch (SQLException e) {

@@ -12,4 +12,12 @@ public interface ITypedaoService {
 	boolean update(Type type);		//更新类型
 	
 	boolean delete(Type type);		//删除类型
+	
+	boolean selectById(int id);		//查询类型是否存在(id)
+	
+	List<Type> selectByRId(int rid);//返回某商家的类型列表
+	
+	boolean selectByRid(int rid);	//查询类型是否存在(rid)
+	
+	String getNameById(int typeid); //根据类型id返回类型名
 }

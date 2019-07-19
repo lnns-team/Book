@@ -46,14 +46,13 @@ public class Tradedaoimpl implements ITradedao{
 		PreparedStatement prep = null;
 		try {
 			conn = DButil.getConnection();
-			prep = conn.prepareStatement("insert into Trade values(?, ?, ?, ?, ?, ?, ?)");
-			prep.setInt(1, trade.getId());
-			prep.setInt(2, trade.getUserid());
-			prep.setString(3, trade.getUsertele());
-			prep.setInt(4, trade.getRid());
-			prep.setString(5, trade.getStatus());
-			prep.setString(6, trade.getAddress());
-			prep.setInt(7, trade.getMoney());
+			prep = conn.prepareStatement("insert into Trade values(null, ?, ?, ?, ?, ?, ?)");
+			prep.setInt(1, trade.getUserid());
+			prep.setString(2, trade.getUsertele());
+			prep.setInt(3, trade.getRid());
+			prep.setString(4, trade.getStatus());
+			prep.setString(5, trade.getAddress());
+			prep.setInt(6, trade.getMoney());
 			prep.executeUpdate();
 			flag = true;
 		} catch (SQLException e) {

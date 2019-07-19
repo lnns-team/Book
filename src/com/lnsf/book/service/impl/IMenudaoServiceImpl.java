@@ -37,5 +37,39 @@ public class IMenudaoServiceImpl implements IMenudaoService{
 		boolean flag = menudao.delete(menu);
 		return flag;
 	}
+	
+	/**
+	 * 根据Rid返回菜单
+	 */
+	@Override
+	public List<Menu> select(int rid) {
+		MenudaoImpl menudao = new MenudaoImpl();
+		List<Menu> list = new ArrayList<Menu>();
+		List<Menu> result = new ArrayList<Menu>();
+		list = menudao.select();
+		for (int i = 0; i < list.size(); i++)
+		{
+			if(list.get(i).getRid() == rid)
+				result.add(list.get(i));
+		}
+		return result;
+	}
+	/**
+	 * 根据menuid和rid判断菜式是否存在
+	 */
+	@Override
+	public boolean selectByMenuIdAndRId(int menuid, int rid) {
+		MenudaoImpl menudao = new MenudaoImpl();
+		List<Menu> list = new ArrayList<Menu>();
+		List<Menu> result = new ArrayList<Menu>();
+		list = menudao.select();
+		for (int i = 0; i < list.size(); i++)
+		{
+			if(list.get(i).getRid() == rid && list.get(i).getId() == menuid)
+				result.add(list.get(i));
+		}
+		if (result.size() > 0) return true;
+		return false;
+	}
 
 }

@@ -45,11 +45,10 @@ public class CardaoImpl implements ICardao{
 		PreparedStatement prep = null;
 		try {
 			conn = DButil.getConnection();
-			prep = conn.prepareStatement("insert into Car values(?, ?, ?, ?)");
-			prep.setInt(1, car.getId());
-			prep.setInt(2, car.getMenuid());
-			prep.setInt(3, car.getNum());
-			prep.setInt(4, car.getTid());
+			prep = conn.prepareStatement("insert into Car values(null, ?, ?, ?)");
+			prep.setInt(1, car.getMenuid());
+			prep.setInt(2, car.getNum());
+			prep.setInt(3, car.getTid());
 			prep.executeUpdate();
 			flag = true;
 		} catch (SQLException e) {

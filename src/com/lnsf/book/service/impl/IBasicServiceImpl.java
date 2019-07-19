@@ -8,13 +8,14 @@ import com.lnsf.book.dao.impl.UserdaoImpl;
 import com.lnsf.book.model.User;
 
 public class IBasicServiceImpl implements IBasicService{
-	public int id;
-	public int rid;
-	public int tid[];
+	public static int id;		//用户id
+	public static int rid;		//商家id
+	public static int tid[];	//订单id
 	@Override
-	public int login(String username, String password) {
+	public User login(String username, String password) {
 		ICustomerServiceImpl customerService = new ICustomerServiceImpl();
 		UserdaoImpl userdao = new UserdaoImpl();
+		User user = null;
 		int flag = 0;
 		List<User> list = new ArrayList<User>();
 		list = userdao.select();
@@ -22,7 +23,7 @@ public class IBasicServiceImpl implements IBasicService{
 		{
 			if(list.get(i).getUsername().equals(username) && list.get(i).getPassword().equals(password))
 			{		//判断用户是否存在
-				id = list.get(i).getId();
+				user = list.get(i);
 				if(list.get(i).getIdentify() == 1)	//返回用户的身份
 				{
 					flag = 1;						//用户是消费者用户
@@ -36,7 +37,7 @@ public class IBasicServiceImpl implements IBasicService{
 				}
 			}
 		}
-		return flag;
+		return user;
 	}
 	/**
 	 * 

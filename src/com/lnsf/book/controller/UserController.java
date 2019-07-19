@@ -2,6 +2,8 @@
 package com.lnsf.book.controller;
 
 import com.lnsf.book.model.User;
+import com.lnsf.book.service.impl.IBasicServiceImpl;
+import com.lnsf.book.service.impl.IUserdaoServiceImpl;
 import com.lnsf.book.view.BgMain;
 import com.lnsf.book.view.FgMain;
 import com.lnsf.book.view.Main;
@@ -9,107 +11,108 @@ import com.lnsf.book.view.UserView;
 
 public class UserController {
     public static User USER = null;
-    
-    public static void login(){
-        UserView.login();
-    }
-    
-	public static void login(String username, String password){
-//        MainController.USER = 用户服务类.根据用户名和密码查找用户(username, password);
-        if (UserController.USER.getId() == 1){
-            UserView.loginSuccessful();
-            FgMain.userMainView();
-        } else if(UserController.USER.getId() == 2){
-            UserView.loginSuccessful();
-            BgMain.businessMainView();
+    static IBasicServiceImpl basicservice = new IBasicServiceImpl();
+    static IUserdaoServiceImpl userdaoservice = new IUserdaoServiceImpl();
+    /**
+     * 用户进行登录操作
+     * 返回1代表普通用户，2代表商家用户，0代表登录失败
+     * @param username
+     * @param password
+     * @return int
+     */
+	public static int login(String username, String password){
+		UserController.USER = basicservice.login(username, password);
+		int flag = 0;
+        if (UserController.USER.getIdentify() == 1){
+            flag = 1;
+        } else if(UserController.USER.getIdentify() == 2){
+            flag = 2;
         } else {
-            UserView.userLoginFailed();
+            flag = 0;
         }
-	}
-	
-	public static void register(){
-	    UserView.register();
+        return flag;
 	}
 	/**
-	 * 返回传入的identify是否正确
-	 * @param identify
-	 * @return
+	 * 用户进行注册操作
+	 * 0代表注册失败，1代表注册成功
+	 * @param user
+	 * @return int
 	 */
-	public static boolean modifyUserIdentify(int identify){
-	    if (identify == 1 || identify == 2){
-	        USER.setId(identify);
-	        UserView.showUserIdentify();
-	        return true;
-	    } else {
-	        UserView.userIdentifyNotFound();
-	        return false;
-	    }
+	public static int registerUser(User user)
+	{
+		int flag = 0;
+		boolean judge = false;
+		judge = userdaoservice.insert(user);
+		if (!judge)
+		{
+			flag = 0;
+		}
+		else
+		{
+			flag = 1;
+		}
+		return flag;
 	}
 	/**
 	 * 根据name判断是否为空
 	 * 不为空则修改USER.name
+	 * 0代表更新失败，2代表用户名已存在，1代表输入成功
 	 * @param name
 	 * @return
 	 */
-	public static boolean updateUserUsername(String username){
-	    boolean flag = false;
-	    if (username == null || username.equals("")){
-	        Main.fail();
-	        UserView.userNameIsEmpty();
-//	    } else if (用户服务类.判断输入用户名是否已经存在(name)){
-	        Main.fail();
-	        UserView.userNameExist();
+	public static int updateUserUsername(String username){
+	    int flag = 0;
+	    boolean exist = userdaoservice.selectByUsername(username);
+	    boolean judge = false;
+	    if (exist == true){
+	        flag = 2;
 	    } else {
-	        USER.setName(username);
-	        Main.success();
-	        UserView.showUserUsername();
-	        flag = true;
+	    	User user = UserController.USER;
+	    	user.setUsername(username);
+	        judge = userdaoservice.update(user);
+	        if (judge == true) flag = 1;
+	        else flag = 0;
 	    }
 	    return flag;
 	}
 	   /**
      * 根据password判断是否为空
      * 不为空则修改USER.password
+     * 0代表更新失败，1代表更新成功
      * @param password
      * @return
      */
-    public static boolean updateUserPassword(String password){
-        boolean flag = false;
-        if (password == null || password.equals("")){
-            Main.fail();
-            UserView.userPasswordIsEmpty();
+    public static int updateUserPassword(String password){
+        int flag = 0;
+        boolean judge = false;
+    	User user = UserController.USER;
+    	user.setPassword(password);;
+        judge = userdaoservice.update(user);
+        if (!judge){
+            flag = 0;
         } else {
-            USER.setPassword(password);
-            Main.success();
-            UserView.showUserPassword();
-            flag = true;
+            flag = 1;
         }
         return flag;
     }
     /**
      * 根据name判断是否为空
-     * 不为空则修改USER.name
+     * name更新失败返回0，更新成功返回1
      * @param name
      * @return
      */
-    public static boolean updateUserName(String name) {
-        boolean flag = false;
-        if (name == null || name.equals("")){
-            Main.fail();
-            UserView.nameIsEmpty();
+    public static int updateUserName(String name) {
+        int flag = 0;
+        boolean judge = false;
+    	User user = UserController.USER;
+    	user.setName(name);
+        judge = userdaoservice.update(user);
+        if (!judge){
+            flag = 0;
         } else {
-            USER.setName(name);
-            Main.success();
-            UserView.showUserName();
-            flag = true;
+            flag = 1;
         }
         return flag;
     }
-	
-	
-	
-	
-	
-	
 }
 
