@@ -113,5 +113,14 @@ public class UserController {
         }
         return flag;
     }
+    /**
+     * 根据用户名返回id
+     * @param username
+     * @return int
+     */
+    public static int getUserIdByUsername(String username)
+    {
+    	return userdaoservice.selectUserId(username);
+    }
 }
 

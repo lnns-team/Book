@@ -42,7 +42,7 @@ public class TradeController {
 	 */
 	public static boolean unfinishedTradeIsExist(int id, int rid)
 	{
-		boolean flag = tradedaoservice.unfinishedTrade(id, rid, "未完成");
+		boolean flag = tradedaoservice.unfinishedTrade(id, rid, "已付款");
 		return flag;
 	}
 	/**

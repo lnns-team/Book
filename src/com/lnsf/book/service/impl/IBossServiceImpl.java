@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lnsf.book.service.IBossService;
+import com.lnsf.book.controller.RestaurantController;
 import com.lnsf.book.dao.impl.AppraisedaoImpl;
 import com.lnsf.book.dao.impl.MenudaoImpl;
 import com.lnsf.book.dao.impl.RestaurantdaoImpl;
@@ -20,12 +21,11 @@ public class IBossServiceImpl implements IBossService {
 	@Override
 	public List<Trade> selectTrade() { // 店家完成的订单信息
 		Tradedaoimpl tradedao = new Tradedaoimpl();
-		IBasicServiceImpl getid = new IBasicServiceImpl();
 		List<Trade> list = new ArrayList<Trade>();
 		List<Trade> result = new ArrayList<Trade>();
 		list = tradedao.select();
 		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getRid() == getid.rid) // 如果店家编号和登录用户的店家编号相同
+			if (list.get(i).getRid() == RestaurantController.RID) // 如果店家编号和登录用户的店家编号相同
 			{
 				result.add(list.get(i));
 			}
@@ -35,14 +35,13 @@ public class IBossServiceImpl implements IBossService {
 
 	@Override
 	public List<Menu> selectMenu() {		//店家的菜单
-		IBasicServiceImpl getid = new IBasicServiceImpl();
 		MenudaoImpl menudao = new MenudaoImpl();
 		List<Menu> list = new ArrayList<Menu>();
 		List<Menu> result = new ArrayList<Menu>();
 		list = menudao.select();
 		for (int i = 0; i < list.size(); i++)
 		{
-			if (list.get(i).getRid() == getid.rid)		//如果菜单的店家号是登录用户的店家
+			if (list.get(i).getRid() == RestaurantController.RID)		//如果菜单的店家号是登录用户的店家
 			{
 				result.add(list.get(i));
 			}
@@ -52,14 +51,13 @@ public class IBossServiceImpl implements IBossService {
 
 	@Override
 	public List<Appraise> selectAppraise() {
-		IBasicServiceImpl getid = new IBasicServiceImpl();
 		AppraisedaoImpl appraisedao = new AppraisedaoImpl();
 		List<Appraise> list = new ArrayList<Appraise>();
 		List<Appraise> result = new ArrayList<Appraise>();
 		list = appraisedao.select();
 		for (int i = 0; i < list.size(); i++)
 		{
-			if (list.get(i).getRid() == getid.rid)		//如果菜单的店家号是登录用户的店家
+			if (list.get(i).getRid() == RestaurantController.RID)		//如果菜单的店家号是登录用户的店家
 			{
 				result.add(list.get(i));
 			}
@@ -95,12 +93,11 @@ public class IBossServiceImpl implements IBossService {
 	@Override
 	public int getRestaurant() {
 		RestaurantdaoImpl restaurantdao = new RestaurantdaoImpl();
-		IBasicServiceImpl basic = new IBasicServiceImpl();
 		List<Restaurant> list = new ArrayList<Restaurant>();
 		int id = 0;
 		list = restaurantdao.select();
 		for (int i = 0; i < list.size(); i++) {
-			if (list.get(i).getUserid() == basic.id) {
+			if (list.get(i).getUserid() == IBasicServiceImpl.id) {
 				id = list.get(i).getId();
 			}
 		}

@@ -17,4 +17,6 @@ public interface IUserdaoService {
 	boolean selectByUsername(String username);//根据username判断username是否存在
 	
 	String selectUsername(int id);//根据id返回username
+	
+	int selectUserId(String username);//根据用户名返回id
 }

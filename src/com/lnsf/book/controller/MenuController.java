@@ -40,8 +40,7 @@ public class MenuController {
      */
     public static boolean addMenu(Menu menu)
     {
-    	menudaoservice.insert(menu);
-    	boolean flag = false;
+    	boolean flag = menudaoservice.insert(menu);
     	return flag;
     }
     /**

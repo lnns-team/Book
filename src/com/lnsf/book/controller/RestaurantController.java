@@ -1,18 +1,47 @@
 package com.lnsf.book.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.lnsf.book.model.Restaurant;
 import com.lnsf.book.service.impl.IRestaurantdaoServiceImpl;
 
 public class RestaurantController {
 
+	public static int RID = -1;		//商家id
 	static IRestaurantdaoServiceImpl restaurantdaoservice = new IRestaurantdaoServiceImpl();
 	/**
 	 * 根据所给id查询出餐馆名字
 	 * @param rid
-	 * @return
+	 * @return String
 	 */
 	public static String getNameByRid(int rid)
 	{
 		String name = restaurantdaoservice.selectNameById(rid);
 		return name;
+	}
+	/**
+	 * 插入该饭店信息
+	 * @param restaurant
+	 * @return
+	 */
+	public static boolean insertRestaurant(Restaurant restaurant)
+	{
+		boolean flag = restaurantdaoservice.insert(restaurant);
+		return flag;
+	}
+	/**
+	 * 查看所有饭馆,返回饭馆List
+	 * @return List<Restaurant>
+	 */
+	public static List<Restaurant> getAllRestaurantList()
+	{
+		List<Restaurant> list = new ArrayList<Restaurant>();
+		list = restaurantdaoservice.select();
+		return list;
+	}
+	public static boolean isExist(int rid)// 根据rid判断该饭店是否存在,存在true不存在false
+	{
+		
 	}
 }

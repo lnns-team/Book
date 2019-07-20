@@ -56,7 +56,9 @@ public class IUserdaoServiceImpl implements IUserdaoService{
 		}
 		return flag;
 	}
-
+	/**
+	 * 根据id返回name
+	 */
 	@Override
 	public String selectUsername(int id) {
 		List<User> list = new ArrayList<User>();
@@ -68,5 +70,21 @@ public class IUserdaoServiceImpl implements IUserdaoService{
 				name = list.get(i).getName();
 		}
 		return name;
+	}
+	/**
+	 * 根据用户名返回id
+	 */
+	@Override
+	public int selectUserId(String username) {
+		List<User> list = new ArrayList<User>();
+		list = select();
+		for (int i = 0; i < list.size(); i++)
+		{
+			if(list.get(i).getUsername().equals(username))
+			{
+				return list.get(i).getId();
+			}
+		}
+		return 0;
 	}
 }
