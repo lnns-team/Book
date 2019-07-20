@@ -16,4 +16,8 @@ public interface IMenudaoService {
 	List<Menu> select(int rid);	//根据Rid返回菜单
 	
 	boolean selectByMenuIdAndRId(int menuid, int rid);	//根据menuid和rid判断菜式是否存在
+	
+	Menu selectById(int id);	//根据Id返回菜式
+	
+	boolean deleteById(int id);	//根据Id删除菜式
 }

@@ -19,5 +19,8 @@ public interface ITypedaoService {
 	
 	boolean selectByRid(int rid);	//查询类型是否存在(rid)
 	
-	String getNameById(int typeid); //根据类型id返回类型名
+	Type getTypeById(int typeid); //根据类型id返回类型
+	
+	boolean selectByIdAndRId(int id, int rid);		//查询类型是否存在(id、rid)
+	
 }
