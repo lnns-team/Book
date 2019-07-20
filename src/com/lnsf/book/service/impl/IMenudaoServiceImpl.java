@@ -105,4 +105,12 @@ public class IMenudaoServiceImpl implements IMenudaoService{
 		return flag;
 	}
 
+	@Override
+	public boolean updateName(int id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+
 }

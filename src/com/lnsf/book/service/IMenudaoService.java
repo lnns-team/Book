@@ -20,4 +20,6 @@ public interface IMenudaoService {
 	Menu selectById(int id);	//根据Id返回菜式
 	
 	boolean deleteById(int id);	//根据Id删除菜式
+	
+	boolean updateName(int id);	//更新菜式名字
 }

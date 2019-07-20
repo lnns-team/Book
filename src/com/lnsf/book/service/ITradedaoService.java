@@ -17,7 +17,7 @@ public interface ITradedaoService {
 	
 	boolean unfinishedTrade(int id, int rid, String status);//根据订单Id和商家Id查询某状态的订单是否存在
 	
-	List<Trade> getFinishedTrade(int rid, String status);//根据商家Id返回已完成订单列表
+	List<Trade> getTradeByStatus(int rid, String status);//根据商家Id返回某状态订单列表
 	
 	boolean updateStatusById(int id, String status);//根据订单Id更新状态
 }

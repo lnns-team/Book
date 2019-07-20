@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lnsf.book.controller.MenuController;
+import com.lnsf.book.controller.RestaurantController;
 import com.lnsf.book.controller.TypeController;
 import com.lnsf.book.controller.UserController;
 import com.lnsf.book.dbutils.Input;
 import com.lnsf.book.model.Menu;
+import com.lnsf.book.service.impl.IBasicServiceImpl;
 
 public class MenuView {
     /**
@@ -24,8 +26,8 @@ public class MenuView {
                 TypeView.typeNotFound();
                 return;
             } else {
-                list = 类型服务类.getMenuListByTypeId();// 根据输入类别id返回Menu List
-                MenuView.showMenu(list);
+//                list = MenuController.getMenuListByTypeId(typeId);// 根据输入类别id返回Menu List
+//                MenuView.showMenu(list);
             }
         } else if (UserController.USER.getIdentify() == 2) {
             list = MenuController.getMenuListByRid(UserController.USER.getId());// 根据rid返回Menu List
@@ -46,7 +48,7 @@ public class MenuView {
             for (Menu m : list) {
                 System.out.println(m.getId() + "." + m.getName() + "价格:" + m.getPrice() + 
                         "类型:" + m.getType() + "描述:" + m.getMDescribe() + 
-                        "店铺名:" + RestaurantmController.getNameByRid(m.getRid()) );
+                        "店铺名:" + RestaurantController.getNameByRid(m.getRid()) );
             }
         }
     }
@@ -73,7 +75,7 @@ public class MenuView {
             BgMain.businessMainView();
             return;
         case 1:
-            MenuController.updateMenuName(menuId);
+            MenuView.updateMenu(menuId);
             break;
         case 2:
 
@@ -140,7 +142,7 @@ public class MenuView {
             
         } else if (menuId == -1){
             addMenu();
-        } else if (MenuController.isExist(menuId, UserController.USER.getId())){
+        } else if (MenuController.isExist(menuId, IBasicServiceImpl.rid)){
             updateMenu(menuId);
         } else {
             System.out.println("输入有误,返回上一层");

@@ -43,8 +43,9 @@ public class TypedaoImpl implements ITypedao {
 		PreparedStatement prep = null;
 		try {
 			conn = DButil.getConnection();
-			prep = conn.prepareStatement("insert into Type values(null, ?)");
+			prep = conn.prepareStatement("insert into Type values(null, ?, ?)");
 			prep.setString(1, type.getName());
+			prep.setInt(2, type.getRid());
 			prep.executeUpdate();
 			flag = true;
 		} catch (SQLException e) {

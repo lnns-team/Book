@@ -10,12 +10,12 @@ import com.lnsf.book.view.Main;
 import com.lnsf.book.view.UserView;
 
 public class UserController {
-    public static User USER = null;
+    public static User USER = new User(-1, "", -1, "", "");
     static IBasicServiceImpl basicservice = new IBasicServiceImpl();
     static IUserdaoServiceImpl userdaoservice = new IUserdaoServiceImpl();
     /**
      * 用户进行登录操作
-     * 返回1代表普通用户，2代表商家用户，0代表登录失败
+     * 返回1代表普通用户，2代表商家用户，0代表登录失败,-1登录失败
      * @param username
      * @param password
      * @return int
@@ -27,8 +27,11 @@ public class UserController {
             flag = 1;
         } else if(UserController.USER.getIdentify() == 2){
             flag = 2;
-        } else {
-            flag = 0;
+        } else if(UserController.USER.getIdentify() == -1){
+            flag = -1;
+        }
+        else{
+        	flag = 0;
         }
         return flag;
 	}
@@ -38,18 +41,14 @@ public class UserController {
 	 * @param user
 	 * @return int
 	 */
-	public static int registerUser(User user)
+	public static boolean registerUser(User user)
 	{
-		int flag = 0;
+		boolean flag = false;
 		boolean judge = false;
-		judge = userdaoservice.insert(user);
+		judge = userdaoservice.selectByUsername(user.getUsername());
 		if (!judge)
 		{
-			flag = 0;
-		}
-		else
-		{
-			flag = 1;
+			flag = userdaoservice.insert(user);
 		}
 		return flag;
 	}

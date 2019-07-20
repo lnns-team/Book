@@ -15,7 +15,7 @@ public class IBasicServiceImpl implements IBasicService{
 	public User login(String username, String password) {
 		ICustomerServiceImpl customerService = new ICustomerServiceImpl();
 		UserdaoImpl userdao = new UserdaoImpl();
-		User user = null;
+		User user = new User(-1, null, -1, null, null);
 		int flag = 0;
 		List<User> list = new ArrayList<User>();
 		list = userdao.select();

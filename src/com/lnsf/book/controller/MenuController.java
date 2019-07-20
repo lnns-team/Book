@@ -49,7 +49,7 @@ public class MenuController {
      * @param id
      * @return Menu
      */
-    public static Menu getMenuListById(int id) {
+    public static Menu getMenuByMenuId(int id) {
     	Menu menu = null;
     	menu = menudaoservice.selectById(id);
 		return menu;
@@ -76,4 +76,5 @@ public class MenuController {
     	boolean flag = menudaoservice.deleteById(menuId);
     	return flag;
     }
+
 }

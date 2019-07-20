@@ -2,6 +2,7 @@ package com.lnsf.book.view;
 
 import java.util.List;
 
+import com.lnsf.book.controller.TradeController;
 import com.lnsf.book.controller.UserController;
 import com.lnsf.book.dbutils.Input;
 import com.lnsf.book.model.Trade;
@@ -48,7 +49,7 @@ public class TradeView {
     }
 
     private static void showUnfinishedTrade() {
-        List<Trade> list = TradeController.getUnfinishedTradeByRid(UserController.USER.getId());
+        List<Trade> list = TradeController.getUnfinishedTradeById(UserController.USER.getId());
         if (list.isEmpty()){
             System.out.println("未发货订单列表为空");
         } else {
@@ -70,7 +71,7 @@ public class TradeView {
         case 0:
             break;
         case 1:
-            TradeView.showUserUnfinishedTrade();
+           // TradeView.showUserUnfinishedTrade();
             break;
         }
         

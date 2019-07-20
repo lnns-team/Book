@@ -26,6 +26,9 @@ public class UserView {
         case 2:
             BgMain.businessMainView();
             break;
+        case -1:
+        	Main.loginFail();
+        	return;
         }
     }
     /**
@@ -42,7 +45,11 @@ public class UserView {
         UserController.USER.setPassword(Input.getString(20));
         if (UserController.registerUser(UserController.USER)){
           Main.success();
-          FgMain.userMainView();
+          if (UserController.USER.getIdentify() == 1){
+        	  FgMain.userMainView();
+          } else {
+        	  BgMain.businessMainView();
+          }
         } else {
           Main.fail();
           System.err.println("注册失败,可能是用户名重复,请重新输入用户名");

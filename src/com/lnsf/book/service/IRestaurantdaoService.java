@@ -14,7 +14,7 @@ public interface IRestaurantdaoService {
 	
 	boolean delete(Restaurant restaurant);	//删除饭店
 	
-	Restaurant selectById(int rid);			//根据id查询饭店
+	Restaurant selectById(int rid);			//根据id获取饭店信息
 
 	String selectNameById(int rid);			//根据id查询饭店名
 }

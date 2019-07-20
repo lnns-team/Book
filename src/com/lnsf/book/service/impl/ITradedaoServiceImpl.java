@@ -76,7 +76,7 @@ public class ITradedaoServiceImpl implements ITradedaoService{
 	 * 根据商家Id返回已完成订单列表
 	 */
 	@Override
-	public List<Trade> getFinishedTrade(int rid, String status) {
+	public List<Trade> getTradeByStatus(int rid, String status) {
 		List<Trade> list = new ArrayList<Trade>();
 		List<Trade> result = new ArrayList<Trade>();
 		list = select();

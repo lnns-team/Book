@@ -3,6 +3,7 @@ package com.lnsf.book.view;
 import com.lnsf.book.controller.MenuController;
 import com.lnsf.book.controller.UserController;
 import com.lnsf.book.dbutils.Input;
+import com.lnsf.book.model.User;
 
 public class FgMain {
 
@@ -21,16 +22,16 @@ public class FgMain {
             System.out.print("请输入:");
             switch (Input.getInt("[0-4]")) {
             case 0:
-                UserController.USER = null;
+                UserController.USER = new User(-1, "", -1, "", "");
                 System.out.println("------------------");
                 System.out.println("您已经退出登录!");
                 System.out.println("------------------");
                 return;
             case 1:
-                MenuController.showMenu();
+//                MenuController.showMenu();
                 break;
             case 2:
-                TradeView.showShoppingCart();
+//                TradeView.showShoppingCart();
                 break;
             case 3:
                 TradeView.showUserTrade();

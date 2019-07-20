@@ -6,12 +6,13 @@ public class Input {
     public static void main(String[] args) {
         
     }
+    
     /**
      * 输入整数的方法
      */
     public static int getInt() {
         int num = 0;
-        String regex = "([0-9])|([1-9][0-9]+)";
+        String regex = "([0-9])|([1-9][0-9]+)|([-][0-9])";
         do {
             Scanner sc = new Scanner(System.in);
             String nums = sc.next();

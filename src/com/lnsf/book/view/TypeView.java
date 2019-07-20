@@ -19,7 +19,7 @@ public class TypeView {
      */
     public static void showType(){
         List<Type> list = new ArrayList<Type>();
-        list = TypeController.
+        //list = TypeController.
         if (list.isEmpty()){
             System.out.println("类别表为空");
         } else {
@@ -109,7 +109,7 @@ public class TypeView {
     private static void addType() {
         System.out.println("请输入新增类别名:");
         String typeName = Input.getString(20);
-        if (TypeController.addType(new Type(-1, typeName, UserController.USER.getId())){
+        if (TypeController.addType(new Type(-1, typeName, UserController.USER.getId()))){
             Main.success();
         } else {
             Main.fail();

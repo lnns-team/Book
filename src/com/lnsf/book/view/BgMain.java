@@ -3,6 +3,7 @@ package com.lnsf.book.view;
 import com.lnsf.book.controller.MenuController;
 import com.lnsf.book.controller.UserController;
 import com.lnsf.book.dbutils.Input;
+import com.lnsf.book.model.User;
 
 public class BgMain {
     /**
@@ -21,7 +22,7 @@ public class BgMain {
             int choice = Input.getInt();
             switch (choice) {
             case 0:
-                UserController.USER = null;
+                UserController.USER = new User(-1, "", -1, "", "");
                 System.out.println("------------------");
                 System.out.println("您已经退出登录!");
                 System.out.println("------------------");
