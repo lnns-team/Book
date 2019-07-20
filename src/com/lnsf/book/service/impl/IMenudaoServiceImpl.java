@@ -71,5 +71,38 @@ public class IMenudaoServiceImpl implements IMenudaoService{
 		if (result.size() > 0) return true;
 		return false;
 	}
+	/**
+	 * 根据id返回一个菜式
+	 */
+	@Override
+	public Menu selectById(int id) {
+		MenudaoImpl menudao = new MenudaoImpl();
+		List<Menu> list = new ArrayList<Menu>();
+		Menu menu = null;
+		list = menudao.select();
+		for (int i = 0; i < list.size(); i++)
+		{
+			if(list.get(i).getId() == id)
+				menu = list.get(i);
+		}
+		return menu;
+	}
+	/**
+	 * 根据Id删除菜式
+	 */
+	@Override
+	public boolean deleteById(int id) {
+		List<Menu> list = new ArrayList<Menu>();
+		boolean flag = false;
+		list = select();
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list.get(i).getId() == id)
+			{
+				flag = delete(list.get(i));
+			}
+		}
+		return flag;
+	}
 
 }

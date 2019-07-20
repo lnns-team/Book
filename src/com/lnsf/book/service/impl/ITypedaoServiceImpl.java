@@ -77,7 +77,7 @@ public class ITypedaoServiceImpl implements ITypedaoService{
 		return result;
 	}
 	/**
-	 * 根据rid判断类型是否存在
+	 * 根据rid判断是否已经有类型存在
 	 */
 	@Override
 	public boolean selectByRid(int rid) {
@@ -97,22 +97,34 @@ public class ITypedaoServiceImpl implements ITypedaoService{
 		return flag;
 	}
 	/**
-	 * 根据类型id返回类型名
+	 * 根据类型id返回类型
 	 */
 	@Override
-	public String getNameById(int id) {
+	public Type getTypeById(int id) {
 		TypedaoImpl typedao = new TypedaoImpl();
 		List<Type> list = new ArrayList<Type>();
-		String name = null;
+		Type type = null;
 		list = typedao.select();
 		for (int i = 0; i < list.size(); i++)
 		{
 			if (list.get(i).getId() == id)
 			{
-				name = list.get(i).getName();
+				type = list.get(i);
 			}
 		}
-		return name;
+		return type;
+	}
+
+	@Override
+	public boolean selectByIdAndRId(int id, int rid) {
+		TypedaoImpl typedao = new TypedaoImpl();
+		List<Type> list = new ArrayList<Type>();
+		list = typedao.select();
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list.get(i).getId() == id && list.get(i).getRid() == rid) return true;
+		}
+		return false;
 	}
 	
 	

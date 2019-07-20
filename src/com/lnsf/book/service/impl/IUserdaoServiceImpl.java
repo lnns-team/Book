@@ -56,4 +56,17 @@ public class IUserdaoServiceImpl implements IUserdaoService{
 		}
 		return flag;
 	}
+
+	@Override
+	public String selectUsername(int id) {
+		List<User> list = new ArrayList<User>();
+		String name = null;
+		list = select();
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list.get(i).getId() == id)
+				name = list.get(i).getName();
+		}
+		return name;
+	}
 }

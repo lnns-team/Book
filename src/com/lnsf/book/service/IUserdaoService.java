@@ -15,4 +15,6 @@ public interface IUserdaoService {
 	boolean delete(User user);		//删除用户
 	
 	boolean selectByUsername(String username);//根据username判断username是否存在
+	
+	String selectUsername(int id);//根据id返回username
 }
