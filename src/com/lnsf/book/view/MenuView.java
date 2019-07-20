@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lnsf.book.controller.MenuController;
+import com.lnsf.book.controller.TypeController;
 import com.lnsf.book.controller.UserController;
 import com.lnsf.book.dbutils.Input;
 import com.lnsf.book.model.Menu;
@@ -84,21 +85,6 @@ public class MenuView {
         }
     }
 
-    /**
-     * 选择操作的菜单
-     */
-    public static void updateMenu() {
-                System.out.println("输入id进入编辑菜名(或输入-1添加新菜式):");
-                int menuId = Input.getInt();
-                if (menuId == -1){
-                    MenuController.addMenu();
-                } else if (MenuController.isExist(menuId)){
-                    MenuController.updateMenu(menuId);
-                } else {
-                    Main.fail();
-                    Main.again();
-                }
-    }
     public static String inputMenuName() {
         System.out.println("请输入新菜式名称:");
         return Input.getString();
@@ -115,7 +101,7 @@ public class MenuView {
             int typeId = Input.getInt();
             if (typeId == 0){
                 
-            } else if (TypeController.isExist(typeId, UserController.USER.getId())){
+            } else if (TypeController.isExistByIdAndRid(typeId, UserController.USER.getId())){
                 System.out.println("请输入菜名:");
                 String menuName = Input.getString(20);
                 System.out.println("请输入价格:");
@@ -143,6 +129,9 @@ public class MenuView {
             }
         }
     }
+    /**
+     * 商家维护菜单操作
+     */
     public static void operateMenu() {
         showMenu();
         System.out.println("输入id修改该菜式(输入-1添加菜式 输入0返回上一层 )");
@@ -152,10 +141,57 @@ public class MenuView {
         } else if (menuId == -1){
             addMenu();
         } else if (MenuController.isExist(menuId, UserController.USER.getId())){
-            
+            updateMenu(menuId);
         } else {
             System.out.println("输入有误,返回上一层");
         }
     }
-
+    /**
+     * 更新菜单操作
+     */
+    public static void updateMenu(int menuId) {
+        System.out.println("选择的菜式:");
+        Menu menu = MenuController.getMenuByMenuId(menuId);
+        System.out.println("菜式id" + menu.getId() + " 菜名:" + menu.getName() + " 价格:" + menu.getPrice() + 
+                " 类型:" + menu.getType() + " 描述:" + menu.getMDescribe());
+        System.out.println("请选择操作(1.修改菜名 2.修改价格 3.修改描述 4.删除菜式 0.返回主页");
+        switch (Input.getInt("[0-4]")){
+        case 0:
+            return;
+        case 1:
+            menu.setName(Input.getString(20));
+            break;
+        case 2:
+            menu.setPrice(Input.getInt());
+            break;
+        case 3:
+            menu.setMDescribe(Input.getString(40));
+            break;
+        case 4:
+            if (MenuController.delMenuById(menu.getId())){
+                Main.success();
+            } else {
+                Main.fail();
+            }
+            return;
+        }
+        if (MenuController.updateMenu(menu)){
+            Main.success();
+        } else {
+            Main.fail();
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

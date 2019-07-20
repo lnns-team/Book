@@ -21,20 +21,21 @@ public class BgMain {
             int choice = Input.getInt();
             switch (choice) {
             case 0:
+                UserController.USER = null;
                 System.out.println("------------------");
                 System.out.println("您已经退出登录!");
                 System.out.println("------------------");
                 return;
             case 1:
-                
+                TradeView.operateTrade();
                 break;
             case 2:
                 MenuView.operateMenu();
                 break;
             case 3:
+                TypeView.operateType();
                 break;
             case 4:
-                UserView.showUserInfo();
                 UserView.updateUserInfo();
                 return;
             default:

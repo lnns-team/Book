@@ -118,6 +118,7 @@ public class UserView {
      * 更新用户信息页面
      */
     public static void updateUserInfo() {
+        UserView.showUserInfo();
         System.out.println("***************************");
         System.out.println("1.更改用户名");
         System.out.println("2.更改姓名");
@@ -142,7 +143,7 @@ public class UserView {
      * 更新密码
      */
     private static void updatePassword() {
-        switch (UserController.updateUserPassword(Input.getString())){
+        switch (UserController.updateUserPassword(Input.getString(20))){
         case 0:
             Main.fail();
             System.out.println("输入为空");
@@ -161,7 +162,7 @@ public class UserView {
      * 更新用户名
      */
     public static void updateUsername() {
-        switch (UserController.updateUserUsername(Input.getString())){
+        switch (UserController.updateUserUsername(Input.getString(20))){
         case 0:
             Main.fail();
             System.out.println("输入为空");
@@ -180,7 +181,7 @@ public class UserView {
      * 更新姓名
      */
     private static void updateName() {
-        switch (UserController.updateUserName(Input.getString())){
+        switch (UserController.updateUserName(Input.getString(20))){
         case 0:
             Main.fail();
             System.out.println("输入为空");
