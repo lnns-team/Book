@@ -37,5 +37,61 @@ public class ICardaoServiceImpl implements ICardaoService{
 		boolean flag = cardao.delete(car);
 		return flag;
 	}
+
+	@Override
+	public List<Car> selectByTid(int tid) {
+		List<Car> list = new ArrayList<Car>();
+		List<Car> result = new ArrayList<Car>();
+		list = select();
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list.get(i).getTid() == tid)
+				result.add(list.get(i));
+		}
+		return result;
+	}
+
+	@Override
+	public boolean isExistByTidAndMid(int tid, int mid) {
+		List<Car> list = new ArrayList<Car>();
+		list = select();
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list.get(i).getMenuid() == mid && list.get(i).getTid() == tid)
+				return true;
+		}
+		return false;
+	}
+	/**
+	 * 根据传入的订单tid,菜式mid判断该car表是否有该记录
+	 */
+	@Override
+	public Car getCar(int tid, int mid) {
+		List<Car> list = new ArrayList<Car>();
+		list = select();
+		Car car = null;
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list.get(i).getTid() == tid && list.get(i).getMenuid() == mid)
+			{
+				car = list.get(i);
+			}
+		}
+		return car;
+	}
+
+	@Override
+	public boolean isExistCarByTid(int tid) {
+		List<Car> list = new ArrayList<Car>();
+		list = select();
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list.get(i).getTid() == tid)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
 	
 }

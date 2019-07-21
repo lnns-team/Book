@@ -72,5 +72,34 @@ public class IRestaurantdaoServiceImpl implements IRestaurantdaoService{
 		}
 		return result;
 	}
+
+	@Override
+	public boolean isExistById(int rid) {
+		List<Restaurant> list = new ArrayList<Restaurant>();
+		List<Restaurant> result = new ArrayList<Restaurant>();
+		list = select();
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list.get(i).getId() == rid)
+			{
+				result.add(list.get(i));
+			}
+		}
+		if (result.size() > 0) return true;
+		return false;
+	}
+	/**
+	 * 通过商家id返回商家店铺rid
+	 */
+	@Override
+	public int selectRidByUserid(int uid) {
+		List<Restaurant> list = select();
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list.get(i).getUserid() == uid)
+				return list.get(i).getId();
+		}
+		return -1;
+	}
 	
 }

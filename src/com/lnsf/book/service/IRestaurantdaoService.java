@@ -19,4 +19,6 @@ public interface IRestaurantdaoService {
 	String selectNameById(int rid);			//根据id查询饭店名
 	
 	boolean isExistById(int rid);			//根据id判断饭店是否存在
+	
+	int selectRidByUserid(int uid);			//通过商家id返回商家店铺rid
 }

@@ -11,7 +11,7 @@ import com.lnsf.book.model.User;
 public class IBasicServiceImpl implements IBasicService{
 	public static int id;		//用户id
 	
-	public static int tid[];	//订单id
+	public static List<Integer> tid;	//订单id
 	@Override
 	public User login(String username, String password) {
 		ICustomerServiceImpl customerService = new ICustomerServiceImpl();
@@ -36,7 +36,6 @@ public class IBasicServiceImpl implements IBasicService{
 					flag = 2;						//用户是店主用户
 					IBossServiceImpl boss = new IBossServiceImpl();
 					RestaurantController.RID = boss.getRestaurant();
-					System.out.println(RestaurantController.RID);
 				}
 			}
 		}

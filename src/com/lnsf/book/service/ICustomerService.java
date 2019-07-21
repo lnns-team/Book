@@ -27,7 +27,7 @@ public interface ICustomerService {		//消费者服务
 	
 	User selectUser();					//查看个人信息
 	
-	int[] getTid();						//获取订单号
+	List<Integer> getTid();						//获取订单号
 
 	boolean updateUser(User user);		//修改个人信息
 

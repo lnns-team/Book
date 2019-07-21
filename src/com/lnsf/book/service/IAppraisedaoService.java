@@ -13,4 +13,8 @@ public interface IAppraisedaoService {
 	boolean update(Appraise appraise);	//更新评价
 	
 	boolean delete(Appraise appraise);	//删除评价
+	
+	boolean isExistByUserIdAndRid(int uid, int rid);	//根据用户id和店铺id查看该用户的评价是否存在
+	
+	String getAboutByUserIdAndRid(int uid, int rid);	//根据用户id和店铺id获取该用户的评价
 }

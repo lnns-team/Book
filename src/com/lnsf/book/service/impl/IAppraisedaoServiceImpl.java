@@ -37,5 +37,35 @@ public class IAppraisedaoServiceImpl implements IAppraisedaoService{
 		boolean flag = appraisedao.delete(appraise);
 		return flag;
 	}
+	/**
+	 * 根据用户id和店铺id查看该用户的评价是否存在
+	 */
+	public boolean isExistByUserIdAndRid(int uid, int rid) {
+		List<Appraise> list = select();
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list.get(i).getUid() == uid && list.get(i).getRid() == rid)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+	/**
+	 * 根据用户id和店铺id获取该用户的评价
+	 */
+	@Override
+	public String getAboutByUserIdAndRid(int uid, int rid) {
+		List<Appraise> list = select();
+		String about = "";
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list.get(i).getUid() == uid && list.get(i).getRid() == rid)
+			{
+				about = list.get(i).getAbout();
+			}
+		}
+		return about;
+	}
 	
 }

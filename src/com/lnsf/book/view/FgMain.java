@@ -15,11 +15,11 @@ public class FgMain {
             System.out.println("***************************\n");
             System.out.println("\t 1.选择餐厅\n");
             System.out.println("\t 2.我的购物车\n");
-            System.out.println("\t 3.我的订单\n");
+            System.out.println("\t 3.查看历史订单\n");
             System.out.println("\t 4.查看个人信息\n");
             System.out.println("\t 0.退出登录");
             System.out.println("***************************");
-            System.out.print("请输入:");
+            System.out.println("请输入:");
             switch (Input.getInt("[0-4]")) {
             case 0:
                 UserController.USER = new User(-1, "", -1, "", "");
@@ -31,7 +31,7 @@ public class FgMain {
                 RestaurantView.operateRestaurant();
                 break;
             case 2:
-//                TradeView.showShoppingCart();
+                TradeView.myShoppingCart();
                 break;
             case 3:
                 TradeView.showUserTrade();

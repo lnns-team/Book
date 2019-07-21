@@ -43,9 +43,10 @@ public class AppraisedaoImpl implements IAppraisedao{
 		PreparedStatement prep = null;
 		try {
 			conn = DButil.getConnection();
-			prep = conn.prepareStatement("insert into Appraise values(null, ?, ?)");
-			prep.setInt(1, appraise.getRid());
-			prep.setString(2, appraise.getAbout());
+			prep = conn.prepareStatement("insert into Appraise values(?, ?, ?)");
+			prep.setInt(1, appraise.getUid());
+			prep.setInt(2, appraise.getRid());
+			prep.setString(3, appraise.getAbout());
 			prep.executeUpdate();
 			flag = true;
 		} catch (SQLException e) {

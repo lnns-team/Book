@@ -40,8 +40,23 @@ public class RestaurantController {
 		list = restaurantdaoservice.select();
 		return list;
 	}
+	/**
+	 * 根据rid判断该饭店是否存在,存在true不存在false
+	 * @param rid
+	 * @return boolean
+	 */
 	public static boolean isExist(int rid)// 根据rid判断该饭店是否存在,存在true不存在false
 	{
-		
+		boolean flag = restaurantdaoservice.isExistById(rid);
+		return flag;
+	}
+	/**
+	 * // 通过商家id返回商家店铺rid
+	 * @param userid
+	 * @return int
+	 */
+	public static int getRidByUserId(int userid)
+	{
+		return restaurantdaoservice.selectRidByUserid(userid);
 	}
 }

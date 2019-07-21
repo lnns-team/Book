@@ -29,9 +29,9 @@ public class ICustomerServiceImpl implements ICustomerService{
 		list = cardao.select();
 		for (int i = 0; i < list.size(); i++)
 		{
-			for (int j = 0; j < basicService.tid.length; j++)
+			for (int j = 0; j < basicService.tid.size(); j++)
 			{
-				if (list.get(i).getTid() == basicService.tid[j])
+				if (list.get(i).getTid() == basicService.tid.get(j))
 				{
 					result.add(list.get(i));
 				}
@@ -142,19 +142,17 @@ public class ICustomerServiceImpl implements ICustomerService{
 	}
 
 	@Override
-	public int[] getTid() {
+	public List<Integer> getTid() {
 		Tradedaoimpl tradedao = new Tradedaoimpl();
 		IBasicServiceImpl basicService = new IBasicServiceImpl();
-		int[] tid = null ;
-		int k = 0;
+		List<Integer> tid = new ArrayList<Integer>();
 		List<Trade> list = new ArrayList<Trade>();
 		list = tradedao.select();
 		for (int i = 0; i < list.size(); i++)
 		{
 			if (list.get(i).getUserid() == basicService.id)
 			{
-				tid[k] = list.get(i).getId();
-				k++;
+				tid.add(list.get(i).getId());
 			}
 		}
 		return tid;

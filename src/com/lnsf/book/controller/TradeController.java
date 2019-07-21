@@ -56,10 +56,131 @@ public class TradeController {
 		boolean flag = tradedaoservice.updateStatusById(tradeId, "已发货");
 		return flag;
 	}
-	public static List<Trade> getUnfinishedTradeById(int id) {
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public static List<Trade> getUnfinishedTradeById(int rid) {
 		List<Trade> list = new ArrayList<Trade>();
-		Restaurant restaurant = restaurantdaoservice.selectById(id);
-		list = tradedaoservice.getTradeByStatus(restaurant.getId(), "已付款");
+		list = tradedaoservice.getTradeByStatus(rid, "已付款");
 		return list;
+	}
+	/**
+	 * / 根据用户id,商家id和状态判断是否存在该订单
+	 * 存在返回true否则false
+	 * @param userId
+	 * @param rid
+	 * @param status
+	 * @return boolean
+	 */
+	public static boolean isExistByUserIdAndRidAndStatus(int userId, int rid, String status)
+	{
+		boolean flag = tradedaoservice.selectTradeByStatus(userId, rid, status);
+		return flag;
+	}
+	/**
+	 * // 插入一个trade,trade的id为-1时代表自增
+	 * 成功返回true否则false
+	 * @param trade
+	 * @return boolean
+	 */
+	public static boolean init(Trade trade)
+	{
+		boolean flag = tradedaoservice.insert(trade);
+		return flag;
+	}
+	/**
+	 * // 根据用户id和店家id和状态返回一个List<Trade>
+	 * @param userId
+	 * @param Rid
+	 * @param status
+	 * @return List<Trade>
+	 */
+	public static List<Trade> getTradeListIdByUseridAndRidAndStatus(int userId, int Rid, String status)
+	{
+		List<Trade> list = tradedaoservice.getTradeByStatus(userId, Rid, status);
+		return list;
+	}
+	/**
+	 * // 根据账单的id返回该账单Trade
+	 * @param tid
+	 * @return Trade
+	 */
+	public static Trade getTradeById(int tid)
+	{
+		Trade trade = tradedaoservice.getTradeById(tid);
+		return trade;
+	}
+	/**
+	 * // 根据传入的Trade的id来更新它的其他所有属性
+	 * 成功返回true失败返回false
+	 * @param trade
+	 * @return boolean
+	 */
+	public static boolean update(Trade trade)
+	{
+		boolean flag = tradedaoservice.update(trade);
+		return flag;
+	}
+	/**
+	 * // 根据userid和状态返回一个TradeList,不能返回空
+	 * @param userid
+	 * @param status
+	 * @return List<Trade>
+	 */
+	public static List<Trade> getTradeListByUseridAndStatus(int userid, String status)
+	{
+		List<Trade> list = tradedaoservice.getTradeByStatusAndUserId(userid, status);
+		return list;
+	}
+	/**
+	 * // 根据tid判断该订单是否存在,存在返回true不存在返回false
+	 * @param tid
+	 * @return boolean
+	 */
+	public static boolean isExist(int tid)
+	{
+		boolean flag = tradedaoservice.selectTradeById(tid);
+		return flag;
+	}
+	/**
+	 * // 根据用户id和状态,返回除了这个状态以外其他所有状态的订单列表(降序排列),不能返回null
+	 * @param userid
+	 * @param status
+	 * @return
+	 */
+	public static List<Trade> getTradeListByUseridAndNotInStatus(int userid, String status)
+	{
+		List<Trade> list = tradedaoservice.getTradeListByUseridAndNotInStatus(userid, status);
+		return list;
+	}
+	/**
+	 * // 根据用户id和订单id和不应该包括的状态判断该订单是否存在
+	 * 存在返回true不存在返回false
+	 * @param userid
+	 * @param tid
+	 * @param status
+	 * @return boolean
+	 */
+	public static boolean isExistByUseridAndTidAndNotInStatus(int userid, int tid, String status)
+	{
+		boolean flag = tradedaoservice.selectTradeById(tid);
+		return flag;
+	}
+	/**
+	 * // 根据店铺id和不包括的状态返回一个List<Trade>
+	 * @param rid
+	 * @param status
+	 * @return List<Trade>
+	 */
+	public static List<Trade> getTradeListByRidAndNotInStatus(int rid, String status)
+	{
+		List<Trade> list = tradedaoservice.getTradeByRidAndStatus(rid, status);
+		return list;
+	}
+	public static List<Trade> getTradeListByRidAndNotInStatus(int ridByUserId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
