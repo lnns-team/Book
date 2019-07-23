@@ -65,6 +65,7 @@ public class IAppraisedaoServiceImpl implements IAppraisedaoService{
 				about = list.get(i).getAbout();
 			}
 		}
+		
 		return about;
 	}
 	/**

@@ -229,8 +229,8 @@ public class TradeView {
                 
             } else if (trade.getStatus().equals("已评价")) {
                 
-                System.out.println("Your review:");
-                AppraiseController.getAboutByUidAndRid(UserController.USER.getId(), trade.getRid());
+                System.out.print("Your review:");
+                System.out.println(AppraiseController.getAboutByUidAndRid(UserController.USER.getId(), trade.getRid()));
                 System.out.println(">Please enter the options:(1.Update review 0.Back):");
                 switch (Input.getInt("[0-1]")){
                 case 0:

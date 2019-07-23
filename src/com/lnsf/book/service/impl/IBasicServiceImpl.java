@@ -10,7 +10,6 @@ import com.lnsf.book.model.User;
 
 public class IBasicServiceImpl implements IBasicService{
 	public static int id;		//用户id
-	
 	public static List<Integer> tid;	//订单id
 	@Override
 	public User login(String username, String password) {

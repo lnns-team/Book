@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.lnsf.book.service.ITypedaoService;
 import com.lnsf.book.dao.impl.TypedaoImpl;
+import com.lnsf.book.model.Menu;
 import com.lnsf.book.model.Type;
 
 public class ITypedaoServiceImpl implements ITypedaoService{
@@ -123,6 +124,20 @@ public class ITypedaoServiceImpl implements ITypedaoService{
 		for (int i = 0; i < list.size(); i++)
 		{
 			if (list.get(i).getId() == id && list.get(i).getRid() == rid) return true;
+		}
+		return false;
+	}
+	/**
+	 * 判断类型下有没有菜式
+	 */
+	@Override
+	public boolean isExistMenuByTypeId(int tid) {
+		IMenudaoServiceImpl menudaoservice = new IMenudaoServiceImpl();
+		List<Menu> list = new ArrayList<Menu>();
+		list = menudaoservice.select();
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list.get(i).getType() == tid) return true;
 		}
 		return false;
 	}

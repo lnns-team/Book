@@ -16,6 +16,7 @@ public class User {
 	private int identify;
 	private String username;
 	private String password;
+	private int num;
 	
 	public int getId() {
 		return id;

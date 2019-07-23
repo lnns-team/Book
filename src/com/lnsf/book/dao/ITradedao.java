@@ -5,7 +5,6 @@ import java.util.List;
 import com.lnsf.book.model.Trade;
 
 public interface ITradedao {
-
 	List<Trade> select();
 	
 	boolean insert(Trade trade);

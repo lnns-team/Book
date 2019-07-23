@@ -23,4 +23,5 @@ public interface ITypedaoService {
 	
 	boolean selectByIdAndRId(int id, int rid);		//查询类型是否存在(id、rid)
 	
+	boolean isExistMenuByTypeId(int tid);	//判断类型下有没有菜式
 }

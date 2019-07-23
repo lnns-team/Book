@@ -12,13 +12,41 @@ public class Main {
     }
 
     /**
-     * 主界面 
+     * 主界面
      */
     public static void mianView() {
         do {
-            System.out.println("🥚🥗🥛🌭🌮🌯🍠🥟🍤🌮🍗🥩🧀");
-            System.out.println("🍔  Do you feel hungry ?? 🍯");
-            System.out.println("🍨🍮🍭🍬🍫🍥🍿🍪🍩🍾🍷🍹🥤🍖");
+            System.out.println();
+            System.out
+                    .println("                                                              *     *    ");
+            System.out
+                    .println("                                                 *                       *");
+            System.out
+                    .println("                                       *                                 *");
+            System.out
+                    .println("                               *                                        *");
+            System.out
+                    .println("                         *                                           * ");
+            System.out
+                    .println("                     *                                            *");
+            System.out
+                    .println("                  *                                         *");
+            System.out
+                    .println("                 *                                *");
+            System.out.println("                 *                      *");
+            System.out
+                    .println("                 *           *                                           *");
+            System.out
+                    .println("                   *                                                *");
+            System.out
+                    .println("                      *                                       *");
+            System.out
+                    .println("                           *                            *");
+            System.out
+                    .println("                                   *         *");
+            System.out.println("****************************************");
+            System.out.println("🍔  \t Do you feel hungry ??\t\t🍯");
+            System.out.println("****************************************");
             Output.printFormat(40);
             Output.formatterOutput("1.Very Hungry!(Sign In)", 30);
             Output.formatterOutput("2.Just a little bit.(Sign Up)", 30);
@@ -41,28 +69,30 @@ public class Main {
         } while (true);
 
     }
-    public static void loginFail(){
+
+    public static void loginFail() {
         System.err.println("Logon failure");
     }
+
     /**
      * 操作失败输出
      */
-    public static void fail(){
+    public static void fail() {
         System.err.println("Operation failure");
     }
+
     /**
      * 操作成功
      */
-    public static void success(){
+    public static void success() {
         System.out.println("Operation succeeded");
     }
+
     /**
      * 请重新输入
      */
-    public static void again(){
+    public static void again() {
         System.out.println(">Please re-enter:");
     }
-    
-    
-    
+
 }

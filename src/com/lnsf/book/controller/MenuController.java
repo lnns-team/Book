@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.lnsf.book.model.Menu;
 import com.lnsf.book.service.impl.IMenudaoServiceImpl;
+import com.lnsf.book.service.impl.ITypedaoServiceImpl;
 
 public class MenuController {
 	
@@ -79,4 +80,15 @@ public class MenuController {
 	{
 		return menudaoservice.selectStockById(mid);
 	}
+	/**
+	 * // 根据类型id判断菜单是否存在,存在true不存在false
+	 * @param tid
+	 * @return
+	 */
+	public static boolean isExistByTid(int tid)
+	{
+		ITypedaoServiceImpl typedaoservice = new ITypedaoServiceImpl();
+		return typedaoservice.isExistMenuByTypeId(tid);
+	}
+
 }
