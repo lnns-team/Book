@@ -3,13 +3,8 @@ package com.lnsf.book.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lnsf.book.dao.impl.MenudaoImpl;
-import com.lnsf.book.dbutils.Input;
 import com.lnsf.book.model.Menu;
 import com.lnsf.book.service.impl.IMenudaoServiceImpl;
-import com.lnsf.book.view.MenuView;
-import com.lnsf.book.view.TypeView;
-import com.lnsf.book.view.UserView;
 
 public class MenuController {
 	
@@ -75,5 +70,13 @@ public class MenuController {
     	boolean flag = menudaoservice.deleteById(menuId);
     	return flag;
     }
-
+    /**
+     * 根据Id返回库存
+     * @param mid
+     * @return int
+     */
+	public static int getStockById(int mid)
+	{
+		return menudaoservice.selectStockById(mid);
+	}
 }

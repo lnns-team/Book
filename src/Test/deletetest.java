@@ -8,13 +8,7 @@ import com.lnsf.book.dao.impl.RestaurantdaoImpl;
 import com.lnsf.book.dao.impl.Tradedaoimpl;
 import com.lnsf.book.dao.impl.TypedaoImpl;
 import com.lnsf.book.dao.impl.UserdaoImpl;
-import com.lnsf.book.model.Appraise;
 import com.lnsf.book.model.Car;
-import com.lnsf.book.model.Menu;
-import com.lnsf.book.model.Restaurant;
-import com.lnsf.book.model.Trade;
-import com.lnsf.book.model.Type;
-import com.lnsf.book.model.User;
 
 public class deletetest {
 	public static void main(String[] args) {

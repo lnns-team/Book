@@ -11,19 +11,16 @@ import java.util.List;
 import com.lnsf.book.dao.ICardao;
 import com.lnsf.book.dbutils.DButil;
 import com.lnsf.book.model.Car;
-import com.lnsf.book.model.User;
 
 public class CardaoImpl implements ICardao{
 
 	@Override
 	public List<Car> select() {
-		Connection conn = null;
-		PreparedStatement prep = null;
 		ResultSet rs=null;
 		List<Car> list = new ArrayList<Car>();
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("select * from Car");
+		try(			Connection conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("select * from Car");) {
+
 			rs = prep.executeQuery();
 			while(rs.next())
 			{
@@ -41,11 +38,8 @@ public class CardaoImpl implements ICardao{
 	@Override
 	public boolean insert(Car car) {
 		boolean flag = false;
-		Connection conn = null;
-		PreparedStatement prep = null;
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("insert into Car values(null, ?, ?, ?)");
+		try (			Connection conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("insert into Car values(null, ?, ?, ?)");){
 			prep.setInt(1, car.getMenuid());
 			prep.setInt(2, car.getNum());
 			prep.setInt(3, car.getTid());
@@ -61,12 +55,9 @@ public class CardaoImpl implements ICardao{
 	@Override
 	public boolean update(Car car) {
 		boolean flag = false;
-		Connection conn = null;
-		PreparedStatement prep = null;
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("update Car set menuid = ?, num = ?, "
-					+ "tid = ? where id = ?");
+		try (			Connection conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("update Car set menuid = ?, num = ?, "
+					+ "tid = ? where id = ?");){
 			prep.setInt(1, car.getMenuid());
 			prep.setInt(2, car.getNum());
 			prep.setInt(3, car.getTid());
@@ -83,11 +74,8 @@ public class CardaoImpl implements ICardao{
 	@Override
 	public boolean delete(Car car) {
 		boolean flag = false;
-		Connection conn = null;
-		PreparedStatement prep = null;
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("delete from Car where id = ?");
+		try(			Connection conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("delete from Car where id = ?");) {
 			prep.setInt(1, car.getId());
 			prep.executeUpdate();
 			flag = true;

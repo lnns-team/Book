@@ -16,13 +16,10 @@ public class TypedaoImpl implements ITypedao {
 
 	@Override
 	public List<Type> select() {
-		Connection conn = null;
-		PreparedStatement prep = null;
 		ResultSet rs=null;
 		List<Type> list = new ArrayList<Type>();
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("select * from type");
+		try (			Connection conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("select * from type");){
 			rs = prep.executeQuery();
 			while(rs.next())
 			{
@@ -39,11 +36,8 @@ public class TypedaoImpl implements ITypedao {
 	@Override
 	public boolean insert(Type type) {
 		boolean flag = false;
-		Connection conn = null;
-		PreparedStatement prep = null;
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("insert into Type values(null, ?, ?)");
+		try (			Connection conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("insert into Type values(null, ?, ?)");){
 			prep.setString(1, type.getName());
 			prep.setInt(2, type.getRid());
 			prep.executeUpdate();
@@ -58,11 +52,8 @@ public class TypedaoImpl implements ITypedao {
 	@Override
 	public boolean update(Type type) {
 		boolean flag = false;
-		Connection conn = null;
-		PreparedStatement prep = null;
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("update Type set name = ? where id = ?");
+		try (			Connection conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("update Type set name = ? where id = ?");){
 			prep.setString(1, type.getName());
 			prep.setInt(2, type.getId());
 			prep.executeUpdate();
@@ -77,11 +68,8 @@ public class TypedaoImpl implements ITypedao {
 	@Override
 	public boolean delete(Type type) {
 		boolean flag = false;
-		Connection conn = null;
-		PreparedStatement prep = null;
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("delete from Type where id = ?");
+		try (			Connection conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("delete from Type where id = ?");){
 			prep.setInt(1, type.getId());
 			prep.executeUpdate();
 			flag = true;

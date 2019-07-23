@@ -131,5 +131,14 @@ public class UserController {
     {
     	return userdaoservice.selectUsername(uid);
     }
+    /**
+     * // 根据一个用户id返回一个用户
+     * @param id
+     * @return User
+     */
+    public static User getUserById(int id)
+    {
+    	return userdaoservice.selectUserById(id);
+    }
 }
 

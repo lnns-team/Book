@@ -29,9 +29,9 @@ public class ICustomerServiceImpl implements ICustomerService{
 		list = cardao.select();
 		for (int i = 0; i < list.size(); i++)
 		{
-			for (int j = 0; j < basicService.tid.size(); j++)
+			for (int j = 0; j < IBasicServiceImpl.tid.size(); j++)
 			{
-				if (list.get(i).getTid() == basicService.tid.get(j))
+				if (list.get(i).getTid() == IBasicServiceImpl.tid.get(j))
 				{
 					result.add(list.get(i));
 				}
@@ -49,7 +49,7 @@ public class ICustomerServiceImpl implements ICustomerService{
 		list = appraisedao.select();
 		for (int i = 0; i < list.size(); i++)
 		{
-			if (list.get(i).getUid() == getid.id)		//如果菜单的店家号是登录用户的店家
+			if (list.get(i).getUid() == IBasicServiceImpl.id)		//如果菜单的店家号是登录用户的店家
 			{
 				result.add(list.get(i));
 			}
@@ -102,7 +102,7 @@ public class ICustomerServiceImpl implements ICustomerService{
 	public List<Trade> selectTrade() {
 		Tradedaoimpl tradedao = new Tradedaoimpl();
 		IBasicServiceImpl getid = new IBasicServiceImpl();
-		int id = getid.id;
+		int id = IBasicServiceImpl.id;
 		List<Trade> list = new ArrayList<Trade>();
 		List<Trade> result = new ArrayList<Trade>();
 		list = tradedao.select();
@@ -125,7 +125,7 @@ public class ICustomerServiceImpl implements ICustomerService{
 		list = userdao.select();
 		for (int i = 0; i < list.size(); i++)
 		{
-			if (list.get(i).getId() == getid.id)		//如果菜单的店家号是登录用户的店家
+			if (list.get(i).getId() == IBasicServiceImpl.id)		//如果菜单的店家号是登录用户的店家
 			{
 				result = new User(list.get(i).getId(), list.get(i).getName(), 
 						list.get(i).getIdentify(), list.get(i).getUsername(), list.get(i).getPassword());
@@ -150,7 +150,7 @@ public class ICustomerServiceImpl implements ICustomerService{
 		list = tradedao.select();
 		for (int i = 0; i < list.size(); i++)
 		{
-			if (list.get(i).getUserid() == basicService.id)
+			if (list.get(i).getUserid() == IBasicServiceImpl.id)
 			{
 				tid.add(list.get(i).getId());
 			}

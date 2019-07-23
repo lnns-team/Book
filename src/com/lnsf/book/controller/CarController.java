@@ -1,6 +1,5 @@
 package com.lnsf.book.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.lnsf.book.model.Car;
@@ -71,4 +70,17 @@ public class CarController {
 		boolean flag = cardaoservice.isExistCarByTid(tid);
 		return flag;
 	}
-}
+	/**
+	 * 根据tid和mid删除car里面的数据
+	 * 成功返回true，失败返回false
+	 * @param tid
+	 * @param mid
+	 * @return
+	 */
+	public static boolean deleteByTidAndMid(int tid, int mid)
+	{
+		return cardaoservice.deleteByTidAndMid(tid, mid);
+	}
+
+}	
+

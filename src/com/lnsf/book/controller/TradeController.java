@@ -3,7 +3,6 @@ package com.lnsf.book.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lnsf.book.model.Restaurant;
 import com.lnsf.book.model.Trade;
 import com.lnsf.book.service.impl.IRestaurantdaoServiceImpl;
 import com.lnsf.book.service.impl.ITradedaoServiceImpl;

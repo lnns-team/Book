@@ -11,19 +11,16 @@ import java.util.List;
 import com.lnsf.book.dao.IRestaurantdao;
 import com.lnsf.book.dbutils.DButil;
 import com.lnsf.book.model.Restaurant;
-import com.lnsf.book.model.User;
 
 public class RestaurantdaoImpl implements IRestaurantdao{
 
 	@Override
 	public List<Restaurant> select() {
-		Connection conn = null;
-		PreparedStatement prep = null;
 		ResultSet rs=null;
 		List<Restaurant> list = new ArrayList<Restaurant>();
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("select * from Restaurant");
+		try (			Connection conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("select * from Restaurant");){
+
 			rs = prep.executeQuery();
 			while(rs.next())
 			{
@@ -41,11 +38,8 @@ public class RestaurantdaoImpl implements IRestaurantdao{
 	@Override
 	public boolean insert(Restaurant restaurant) {
 		boolean flag = false;
-		Connection conn = null;
-		PreparedStatement prep = null;
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("insert into Restaurant values(null, ?, ?, ?)");
+		try (Connection conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("insert into Restaurant values(null, ?, ?, ?)");){
 			prep.setInt(1, restaurant.getUserid());
 			prep.setString(2, restaurant.getName());
 			prep.setString(3, restaurant.getAddress());
@@ -61,12 +55,9 @@ public class RestaurantdaoImpl implements IRestaurantdao{
 	@Override
 	public boolean update(Restaurant restaurant) {
 		boolean flag = false;
-		Connection conn = null;
-		PreparedStatement prep = null;
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("update Restaurant set userid = ? , name = ? ,"
-					+ "address = ? where id = ?");
+		try (			Connection conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("update Restaurant set userid = ? , name = ? ,"
+					+ "address = ? where id = ?");){
 			prep.setInt(1, restaurant.getUserid());
 			prep.setString(2, restaurant.getName());
 			prep.setString(3, restaurant.getAddress());
@@ -83,11 +74,8 @@ public class RestaurantdaoImpl implements IRestaurantdao{
 	@Override
 	public boolean delete(Restaurant restaurant) {
 		boolean flag = false;
-		Connection conn = null;
-		PreparedStatement prep = null;
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("delete from Restaurant where id = ?");
+		try (			Connection conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("delete from Restaurant where id = ?");){
 			prep.setInt(1, restaurant.getId());
 			prep.executeUpdate();
 			flag = true;

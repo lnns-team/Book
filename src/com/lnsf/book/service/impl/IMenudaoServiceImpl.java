@@ -110,6 +110,14 @@ public class IMenudaoServiceImpl implements IMenudaoService{
 		// TODO Auto-generated method stub
 		return false;
 	}
+	/**
+	 * 根据Id返回库存
+	 */
+	@Override
+	public int selectStockById(int id) {
+		Menu menu = selectById(id);
+		return menu.getStock();
+	}
 
 
 

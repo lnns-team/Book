@@ -17,13 +17,11 @@ public class UserdaoImpl implements IUserdao {
 	//对User表进行查询
 	@Override
 	public List<User> select() {
-		Connection conn = null;
-		PreparedStatement prep = null;
 		ResultSet rs = null;
 		List<User> list = new ArrayList<User>();
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("select * from user");
+		try (			Connection conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("select * from user");){
+
 			rs = prep.executeQuery();
 			while (rs.next()) {
 				User user = new User(rs.getInt("id"), rs.getString("name"),
@@ -42,11 +40,8 @@ public class UserdaoImpl implements IUserdao {
 	@Override
 	public boolean insert(User user) {
 		boolean flag = false;
-		Connection conn = null;
-		PreparedStatement prep = null;
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("insert into User values(null, ?, ?, ?, ?)");
+		try (			Connection conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("insert into User values(null, ?, ?, ?, ?)");){
 			prep.setString(1, user.getName());
 			prep.setInt(2, user.getIdentify());
 			prep.setString(3, user.getUsername());
@@ -64,12 +59,9 @@ public class UserdaoImpl implements IUserdao {
 	@Override
 	public boolean update(User user) {
 		boolean flag = false;
-		Connection conn = null;
-		PreparedStatement prep = null;
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("update User set name = ?, identify = ? ,username = ? ,"
-					+ " password = ? where id = ?");
+		try (Connection conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("update User set name = ?, identify = ? ,username = ? ,"
+					+ " password = ? where id = ?");){
 			prep.setString(1, user.getName());
 			prep.setInt(2, user.getIdentify());
 			prep.setString(3, user.getUsername());
@@ -88,11 +80,8 @@ public class UserdaoImpl implements IUserdao {
 	@Override
 	public boolean delete(User user) {
 		boolean flag = false;
-		Connection conn = null;
-		PreparedStatement prep = null;
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("delete from user where id = ?");
+		try (			Connection conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("delete from user where id = ?");){
 			prep.setInt(1, user.getId());
 			prep.executeUpdate();
 			flag = true;

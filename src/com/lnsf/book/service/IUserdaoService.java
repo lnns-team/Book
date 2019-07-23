@@ -19,4 +19,6 @@ public interface IUserdaoService {
 	String selectUsername(int id);//根据id返回username
 	
 	int selectUserId(String username);//根据用户名返回id
+	
+	User selectUserById(int id);	//根据一个用户id返回一个用户对象
 }

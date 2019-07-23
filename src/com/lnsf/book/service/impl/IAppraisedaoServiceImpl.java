@@ -67,5 +67,21 @@ public class IAppraisedaoServiceImpl implements IAppraisedaoService{
 		}
 		return about;
 	}
+	/**
+	 * // 根据rid来返回一个评价List,该List不能为null
+	 */
+	@Override
+	public List<Appraise> getAppraiseByRid(int rid) {
+		List<Appraise> list = select();;
+		List<Appraise> result = new ArrayList<Appraise>();
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list.get(i).getRid() == rid)
+			{
+				result.add(list.get(i));
+			}
+		}
+		return result;
+	}
 	
 }

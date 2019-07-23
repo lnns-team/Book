@@ -2,8 +2,9 @@ package com.lnsf.book.model;
 
 public class Menu {
 	
+
 	public Menu(int id, String name, int price, int rid, String mdescribe,
-			int type) {
+			int type, int stock) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -11,6 +12,7 @@ public class Menu {
 		this.rid = rid;
 		this.mdescribe = mdescribe;
 		this.type = type;
+		this.stock = stock;
 	}
 	private int id;
 	private String name;
@@ -18,6 +20,7 @@ public class Menu {
 	private int rid;
 	private String mdescribe;
 	private int type;
+	private int stock;
 	
 	public int getId() {
 		return id;
@@ -55,10 +58,17 @@ public class Menu {
 	public void setType(int type) {
 		this.type = type;
 	}
+	public int getStock() {
+		return stock;
+	}
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
 	@Override
 	public String toString() {
 		return "Menu [id=" + id + ", name=" + name + ", price=" + price
 				+ ", rid=" + rid + ", mdescribe=" + mdescribe + ", type="
-				+ type + "]";
+				+ type + ", stock=" + stock + "]";
 	}
+
 }

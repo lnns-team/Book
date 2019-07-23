@@ -19,5 +19,7 @@ public interface ICardaoService {
 	
 	Car getCar(int tid, int mid);//根据传入的订单tid,菜式mid判断该car表是否有该记录
 	
-	boolean isExistCarByTid(int tid);	//根据tid 判断是否存在购物车ﳵ
+	boolean isExistCarByTid(int tid);	//根据tid 判断是否存在购物车
+	
+	boolean deleteByTidAndMid(int tid, int mid);//根据传入的订单tid,菜式mid删除carﳵ
 }

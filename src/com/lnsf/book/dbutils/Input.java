@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Input {
     public static void main(String[] args) {
-        
+        System.out.println(getInt("([0-9])|([1-9][0-9]+)|-1"));
     }
     
     /**
@@ -20,7 +20,7 @@ public class Input {
             if (nums.matches(regex)) {
                 num = Integer.parseInt(nums);
             } else {
-                System.err.println("输入有误,请重新输入!");
+                System.err.println(">Invalid input.Please check the input again and retry.");
                 continue;
             }
             break;
@@ -39,7 +39,7 @@ public class Input {
             if (nums.matches(regex)) {
                 num = Integer.parseInt(nums);
             } else {
-                System.err.println("输入有误,请输入检查输入!");
+                System.err.println(">Invalid input.Please check the input again and retry.");
                 continue;
             }
             break;
@@ -53,7 +53,7 @@ public class Input {
     public static String getString() {
         String string = null;
         Scanner sc = new Scanner(System.in);
-        string = sc.next();
+        string = sc.nextLine();
         return string;
     }
 /**
@@ -64,9 +64,9 @@ public class Input {
     public static String getString(int length) {
         String string = null;
         Scanner sc = new Scanner(System.in);
-        string = sc.next();
+        string = sc.nextLine();
         while (string.length() > length){
-            System.err.println("长度过长,请重新输入!");
+            System.err.println(">Input length is too long,Please check the input again and retry.");
             sc = new Scanner(System.in);
             string = sc.next();
         }

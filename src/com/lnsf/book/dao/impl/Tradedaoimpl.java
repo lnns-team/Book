@@ -11,19 +11,15 @@ import java.util.List;
 import com.lnsf.book.dao.ITradedao;
 import com.lnsf.book.dbutils.DButil;
 import com.lnsf.book.model.Trade;
-import com.lnsf.book.model.User;
 
 public class Tradedaoimpl implements ITradedao{
 
 	@Override
 	public List<Trade> select() {
-		Connection conn = null;
-		PreparedStatement prep = null;
 		ResultSet rs=null;
 		List<Trade> list = new ArrayList<Trade>();
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("select * from Trade");
+		try (			Connection conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("select * from Trade");){
 			rs = prep.executeQuery();
 			while(rs.next())
 			{
@@ -42,11 +38,8 @@ public class Tradedaoimpl implements ITradedao{
 	@Override
 	public boolean insert(Trade trade) {
 		boolean flag = false;
-		Connection conn = null;
-		PreparedStatement prep = null;
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("insert into Trade values(null, ?, ?, ?, ?, ?, ?)");
+		try (Connection conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("insert into Trade values(null, ?, ?, ?, ?, ?, ?)");){
 			prep.setInt(1, trade.getUserid());
 			prep.setString(2, trade.getUsertele());
 			prep.setInt(3, trade.getRid());
@@ -65,12 +58,9 @@ public class Tradedaoimpl implements ITradedao{
 	@Override
 	public boolean update(Trade trade) {
 		boolean flag = false;
-		Connection conn = null;
-		PreparedStatement prep = null;
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("update Trade set usertele = ?,"
-					+ " status = ?, address = ?, money = ? where id = ?");
+		try (			Connection conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("update Trade set usertele = ?,"
+					+ " status = ?, address = ?, money = ? where id = ?");){
 			prep.setString(1, trade.getUsertele());
 			prep.setString(2, trade.getStatus());
 			prep.setString(3, trade.getAddress());
@@ -88,11 +78,8 @@ public class Tradedaoimpl implements ITradedao{
 	@Override
 	public boolean delete(Trade trade) {
 		boolean flag = false;
-		Connection conn = null;
-		PreparedStatement prep = null;
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("delete from Trade where id = ?");
+		try (			Connection conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("delete from Trade where id = ?");){
 			prep.setInt(1, trade.getId());
 			prep.executeUpdate();
 			flag = true;

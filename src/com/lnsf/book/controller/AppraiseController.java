@@ -1,5 +1,7 @@
 package com.lnsf.book.controller;
 
+import java.util.List;
+
 import com.lnsf.book.model.Appraise;
 import com.lnsf.book.service.impl.IAppraisedaoServiceImpl;
 
@@ -49,5 +51,14 @@ public class AppraiseController {
 	public static boolean insertAbout(int userid, int rid, String about)
 	{
 		return appraisedaoservice.insert(new Appraise(userid, rid, about));
+	}
+	/**
+	 * // 根据rid来返回一个评价List,该List不能为null
+	 * @param rid
+	 * @return List<Appraise>
+	 */
+	public static List<Appraise> getAppraiseListByRid(int rid)
+	{
+		return appraisedaoservice.getAppraiseByRid(rid);
 	}
 }

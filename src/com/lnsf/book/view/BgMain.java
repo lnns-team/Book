@@ -4,6 +4,7 @@ import com.lnsf.book.controller.MenuController;
 import com.lnsf.book.controller.RestaurantController;
 import com.lnsf.book.controller.UserController;
 import com.lnsf.book.dbutils.Input;
+import com.lnsf.book.dbutils.Output;
 import com.lnsf.book.model.User;
 
 public class BgMain {
@@ -12,22 +13,23 @@ public class BgMain {
      */
     public static void businessMainView(){
         do {
-            System.out.println("你的店铺id是:" + RestaurantController.RID);
-            System.out.println("***************************\n");
-            System.out.println("\t 1.查看订单\n");
-            System.out.println("\t 2.查看菜单\n");
-            System.out.println("\t 3.查看类别\n");
-            System.out.println("\t 4.查看个人信息\n");
-            System.out.println("\t 0.退出登录");
-            System.out.println("***************************");
-            System.out.println("请输入:");
-            int choice = Input.getInt();
+            Output.printFormat(40);
+            Output.formatterOutput("1.View the list of orders", 30);
+            Output.formatterOutput("2.View Menu", 30);
+            Output.formatterOutput("3.View categories", 30);
+            Output.formatterOutput("4.View personal information", 30);
+            Output.formatterOutput("5.View restaurant information", 30);
+            Output.formatterOutput("0.Log out", 30);
+            Output.printFormat(40);
+            System.out.println(">Please enter the options:");
+            int choice = Input.getInt("[0-5]");
             switch (choice) {
             case 0:
                 UserController.USER = new User(-1, "", -1, "", "");
-                System.out.println("------------------");
-                System.out.println("您已经退出登录!");
-                System.out.println("------------------");
+                RestaurantController.RID = -1;
+                Output.printFormat(40);
+                Output.formatterOutput("You have logged out", 30);
+                Output.printFormat(40);
                 return;
             case 1:
                 TradeView.operateTrade();
@@ -41,8 +43,8 @@ public class BgMain {
             case 4:
                 UserView.updateUserInfo();
                 break;
-            default:
-                System.err.println("无此操作");
+            case 5:
+                RestaurantView.updateRestaurantInfo();
                 break;
             }
         } while (true);

@@ -93,5 +93,13 @@ public class ICardaoServiceImpl implements ICardaoService{
 		}
 		return false;
 	}
+	/**
+	 * 根据传入的订单tid,菜式mid删除car
+	 */
+	@Override
+	public boolean deleteByTidAndMid(int tid, int mid) {
+		Car car = getCar(tid, mid);
+		return delete(car);
+	}
 	
 }

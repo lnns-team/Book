@@ -59,4 +59,23 @@ public class RestaurantController {
 	{
 		return restaurantdaoservice.selectRidByUserid(userid);
 	}
+	/**
+	 * // 根据一个饭馆id返回一个饭馆
+	 * @param rid
+	 * @return Restaurant
+	 */
+	public static Restaurant getRestaurantByRid(int rid)
+	{
+		return restaurantdaoservice.selectById(rid);
+	}
+	/**
+	 * // 根据输入的店铺的店铺id来更新店铺的名字和地址
+	 * 成功返回true失败返回false
+	 * @param restaurant
+	 * @return boolean
+	 */
+	public static boolean updateRestaurant(Restaurant restaurant)
+	{
+		return restaurantdaoservice.update(restaurant);
+	}
 }

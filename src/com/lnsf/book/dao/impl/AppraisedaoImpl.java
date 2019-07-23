@@ -16,13 +16,11 @@ public class AppraisedaoImpl implements IAppraisedao{
 
 	@Override
 	public List<Appraise> select() {
-		Connection conn = null;
-		PreparedStatement prep = null;
 		ResultSet rs=null;
 		List<Appraise> list = new ArrayList<Appraise>();
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("select * from Appraise");
+		try (
+			Connection conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("select * from Appraise");){
 			rs = prep.executeQuery();
 			while(rs.next())
 			{
@@ -39,11 +37,10 @@ public class AppraisedaoImpl implements IAppraisedao{
 	@Override
 	public boolean insert(Appraise appraise) {
 		boolean flag = false;
-		Connection conn = null;
-		PreparedStatement prep = null;
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("insert into Appraise values(?, ?, ?)");
+		try (
+				Connection conn = DButil.getConnection();
+				PreparedStatement prep = conn.prepareStatement("insert into Appraise values(?, ?, ?)");){
+
 			prep.setInt(1, appraise.getUid());
 			prep.setInt(2, appraise.getRid());
 			prep.setString(3, appraise.getAbout());
@@ -59,12 +56,11 @@ public class AppraisedaoImpl implements IAppraisedao{
 	@Override
 	public boolean update(Appraise appraise) {
 		boolean flag = false;
-		Connection conn = null;
-		PreparedStatement prep = null;
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("update Appraise set about = ? where uid = ? "
-					+ "and rid = ?");
+		try(
+			 	Connection conn = DButil.getConnection();
+				PreparedStatement prep = conn.prepareStatement("update Appraise set about = ? where uid = ? "
+						+ "and rid = ?");) {
+
 			prep.setString(1, appraise.getAbout());
 			prep.setInt(2, appraise.getUid());
 			prep.setInt(3, appraise.getRid());
@@ -80,11 +76,10 @@ public class AppraisedaoImpl implements IAppraisedao{
 	@Override
 	public boolean delete(Appraise appraise) {
 		boolean flag = false;
-		Connection conn = null;
-		PreparedStatement prep = null;
-		try {
-			conn = DButil.getConnection();
-			prep = conn.prepareStatement("delete from Appraise where uid = ? and rid = ?");
+		try(	
+				Connection	conn = DButil.getConnection();
+			PreparedStatement prep = conn.prepareStatement("delete from Appraise where uid = ? and rid = ?");) {
+
 			prep.setInt(1, appraise.getUid());
 			prep.setInt(2, appraise.getRid());
 			prep.executeUpdate();

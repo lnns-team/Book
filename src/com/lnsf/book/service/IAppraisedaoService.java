@@ -17,4 +17,6 @@ public interface IAppraisedaoService {
 	boolean isExistByUserIdAndRid(int uid, int rid);	//根据用户id和店铺id查看该用户的评价是否存在
 	
 	String getAboutByUserIdAndRid(int uid, int rid);	//根据用户id和店铺id获取该用户的评价
+	
+	List<Appraise> getAppraiseByRid(int rid);	// 根据rid来返回一个评价List,该List不能为null
 }

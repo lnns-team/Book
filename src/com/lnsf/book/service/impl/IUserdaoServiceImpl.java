@@ -87,4 +87,18 @@ public class IUserdaoServiceImpl implements IUserdaoService{
 		}
 		return 0;
 	}
+	/**
+	 * 根据一个用户id返回一个用户对象
+	 */
+	@Override
+	public User selectUserById(int id) {
+		List<User> list = new ArrayList<User>();
+		list = select();
+		for (int i = 0; i < list.size(); i++)
+		{
+			if (list.get(i).getId() == id)
+				return list.get(i);
+		}
+		return null;
+	}
 }
